@@ -11,8 +11,6 @@ use App\identitydetail;
 
 use App\addressdetail;
 
-use DB;
-
 use App\otherdetail;
 
 use Session;
@@ -169,7 +167,8 @@ class CustomerController extends Controller
         ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
         ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
         ->where('identitydetails.id','=',$id)
-        ->get();
+        ->first();
+        
 
         return view('customer.show')->withCustdetails($customerdetails);
 

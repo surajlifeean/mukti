@@ -39,7 +39,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="">
+                    <a class="navbar-brand" href="{{URL('home')}}">
                         Mukti
                     </a>
                 </div>

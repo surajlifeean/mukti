@@ -140,15 +140,15 @@
     <select class="form-control" name="income">
     
      
-          <option value="1">Below 1 lakhs</option>
+          <option value="less than 1 lakhs">Below 1 lakhs</option>
           
-          <option value="5">1 to 5 lakhs</option>
+          <option value="1-5 lakhs">1 to 5 lakhs</option>
 
-          <option value="10">5 to 10 lakhs</option>
+          <option value="5-10 lakhs">5 to 10 lakhs</option>
 
-          <option  value="25">10 to 25 lakhs</option>
+          <option  value="10-25 lakhs">10 to 25 lakhs</option>
 
-          <option value="90">more than 25 lakhs</option>  
+          <option value="over 25 lakhs">more than 25 lakhs</option>  
 
 		    
     </select>
@@ -166,7 +166,7 @@
           <option value="Agriculture">Agriculture</option>
 
 
-          <option value="Government">Government Service</option>
+          <option value="Government Service">Government Service</option>
           
           <option value="Retired">Retired</option>
 

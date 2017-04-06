@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -14,7 +15,7 @@
                         <td class="active"><a href="{{route('customers.index')}}">Register Customer</a></td>
                     </tr>
                     <tr>
-                        <td class="success">Search Customer</td>
+                        <td class="success"><a href="{{route('searchcustomers.index')}}">  Search Customer</a></td>
                     </tr>
                     <tr>    
                         <td class="warning">Allote Loan</td>

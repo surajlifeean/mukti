@@ -23,3 +23,4 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::resource('customers','CustomerController');
 
+Route::resource('searchcustomers','SearchCustomerController');
