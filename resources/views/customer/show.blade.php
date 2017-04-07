@@ -75,6 +75,10 @@
    	</table>
 <tr><td >
    	<a href="{{url('home')}}" class="btn btn-primary">Home Page</a>
+
+      @if($custdetails->loan_alloted)
+   	<a href="{{url('home')}}" class="btn btn-primary">Premium Status</a>
+      @endif
 </td></tr>
   </div>
 </div>

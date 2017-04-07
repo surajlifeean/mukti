@@ -18,7 +18,7 @@
                         <td class="success"><a href="{{route('searchcustomers.index')}}">  Search Customer</a></td>
                     </tr>
                     <tr>    
-                        <td class="warning">Allote Loan</td>
+                        <td class="warning"><a href="{{route('loan_allotments.index')}}">  Allote Loan</a></td>
                     </tr>
                     <tr>    
                         <td class="danger">Premium</td>

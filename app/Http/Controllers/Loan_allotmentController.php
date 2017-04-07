@@ -10,8 +10,13 @@ use App\addressdetail;
 
 use App\otherdetail;
 
+use App\loan_allotment;
 
-class SearchCustomerController extends Controller
+use Carbon\Carbon;
+
+use Session;
+
+class Loan_allotmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +26,15 @@ class SearchCustomerController extends Controller
     public function index()
     {
         //
-        return view('searchcustomer.searchbyname');
+            $customerdetails=identitydetail::select('identitydetails.id', 'name', 'identitydetails.created_at', 'address', 'city','pin','state', 'phone_no','occupation')
+        ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
+        ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
+        ->where('loan_alloted','=',0)
+        ->get();
+
+        return view('loan_allotments.index')->withMatchinglist($customerdetails);
+        
+
     }
 
     /**
@@ -32,6 +45,7 @@ class SearchCustomerController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -42,18 +56,40 @@ class SearchCustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //it actually shows the details and not stores them
-            $customerdetails=identitydetail::select('identitydetails.id', 'name', 'gardian', 'relation', 'gender', 'marital_status',
-          'pan_no', 'aadhar_no', 'idproof', 'dob', 'identitydetails.created_at', 'identitydetails.updated_at', 'address', 'city','pin',
-         'state', 'country', 'phone_no',
-         'addressproof', 'salary', 'occupation','registered_by')
-        ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
-        ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
-        ->where('name','like',"%".$request->name."%")
-        ->get();
+        //
+        $loan=new loan_allotment;
 
-        return view('searchcustomer.showsearchbyname')->withMatchinglist($customerdetails);
+        $loan->principal=$request->principal;
+
+        $loan->processfee=$request->processfee;
+       
+        $loan->padscost=$request->padscost;
         
+        $loan->customer_id=$request->customer_id;
+
+
+        $loan->nextpremiumdate=Carbon::now()->addDays(1);
+
+        $loan->status="active";
+
+        $loan->save();
+
+       // $loan->save();
+
+        $otherdetails=otherdetail::where('customer_id','=',$request->customer_id)->first();
+
+        $otherdetails->loan_alloted=1;
+
+        $otherdetails->save();
+
+
+
+        Session::flash('success','The loan is sucessfully Alloted!');
+
+        return view('loan_allotments.success');
+
+
+
 
     }
 
@@ -66,6 +102,7 @@ class SearchCustomerController extends Controller
     public function show($id)
     {
         //
+        return view('loan_allotments.allote')->withCustomerid($id);
     }
 
     /**

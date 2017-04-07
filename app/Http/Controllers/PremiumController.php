@@ -4,14 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\identitydetail;
-
-use App\addressdetail;
-
-use App\otherdetail;
-
-
-class SearchCustomerController extends Controller
+class PremiumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +14,15 @@ class SearchCustomerController extends Controller
     public function index()
     {
         //
-        return view('searchcustomer.searchbyname');
+        $customerdetails=identitydetail::select('identitydetails.id', 'name', 'identitydetails.created_at', 'address', 'city','pin','state', 'phone_no','occupation')
+        ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
+        ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
+        ->where('loan_alloted','>',)
+        ->get();
+
+        return view('loan_allotments.index')->withMatchinglist($customerdetails);
+        
+
     }
 
     /**
@@ -42,19 +43,7 @@ class SearchCustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //it actually shows the details and not stores them
-            $customerdetails=identitydetail::select('identitydetails.id', 'name', 'gardian', 'relation', 'gender', 'marital_status',
-          'pan_no', 'aadhar_no', 'idproof', 'dob', 'identitydetails.created_at', 'identitydetails.updated_at', 'address', 'city','pin',
-         'state', 'country', 'phone_no',
-         'addressproof', 'salary', 'occupation','registered_by')
-        ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
-        ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
-        ->where('name','like',"%".$request->name."%")
-        ->get();
-
-        return view('searchcustomer.showsearchbyname')->withMatchinglist($customerdetails);
-        
-
+        //
     }
 
     /**
