@@ -11,6 +11,11 @@
                 <div class="panel-body">
                 <table class="table">
                 <b>
+                    
+                    <tr>    
+                        <td class="danger"><a href="{{route('rates.getrates')}}">Check Rates</a></td>
+                        
+                    </tr>
                     <tr>
                         <td class="active"><a href="{{route('customers.index')}}">Register Customer</a></td>
                     </tr>
@@ -24,6 +29,8 @@
                         <td class="danger"><a href="{{route('premiums.index')}}"> Premium</a></td>
                         
                     </tr>
+
+
                 </b>
                 </table>
                 </div>

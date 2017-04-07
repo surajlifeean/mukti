@@ -28,3 +28,7 @@ Route::resource('searchcustomers','SearchCustomerController');
 Route::resource('loan_allotments','Loan_allotmentController');
 
 Route::resource('premiums','PremiumController');
+
+
+ Route::get('rates',['as'=>'rates.getrates','uses'=>'RateController@getrates']);
+

@@ -15,6 +15,8 @@ use App\loan_allotment;
 
 use App\Premium;
 
+use App\Rate;
+
 use Carbon\Carbon;
 
 class PremiumController extends Controller
@@ -71,6 +73,27 @@ class PremiumController extends Controller
     public function show($id)
     {
         //
+
+            $currentdate=Carbon::now();
+
+            $fine=0;
+
+            $customerdetails=identitydetail::select('identitydetails.id', 'name', 'loan_allotments.created_at', 'address', 'city','pin','state', 'phone_no','occupation','nextpremiumdate','principal')
+        ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
+        ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
+        ->join('loan_allotments','identitydetails.id','=','loan_allotments.customer_id')
+        ->where('identitydetails.id','=',$id)
+        ->first();
+
+            $premium=Rate::select('ewi')
+                        ->where('principal','=',$customerdetails->principal)
+                        ->first();
+            
+        
+        
+          if($currentdate>date('Y-m-d', strtotime($customerdetails->nextpremiumdate. ' + 1 days')))
+              $fine=(date('d',(strtotime($currentdate))-strtotime($customerdetails->nextpremiumdate)))*10;
+          return view('premiums.show')->withCustdetails($customerdetails)->withFine($fine)->withPremium($premium);
     }
 
     /**

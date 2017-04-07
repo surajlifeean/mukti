@@ -29,7 +29,7 @@
     Date of Payment:{{date('jS M, Y', strtotime($list->nextpremiumdate))}}
              </p>
 
-              <p><a class="btn btn-primary" href="{{route('loan_allotments.show',$list->id)}}" role="button">Deposit Premium</a></p>
+              <p><a class="btn btn-primary" href="{{route('premiums.show',$list->id)}}" role="button">Deposit Premium</a></p>
               <hr>
          </div>
        </div>
