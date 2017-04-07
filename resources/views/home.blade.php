@@ -21,7 +21,7 @@
                         <td class="warning"><a href="{{route('loan_allotments.index')}}">  Allote Loan</a></td>
                     </tr>
                     <tr>    
-                        <td class="danger">Premium</td>
+                        <td class="danger"><a href="{{route('premiums.index')}}"> Premium</a></td>
                         
                     </tr>
                 </b>

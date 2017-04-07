@@ -26,3 +26,5 @@ Route::resource('customers','CustomerController');
 Route::resource('searchcustomers','SearchCustomerController');
 
 Route::resource('loan_allotments','Loan_allotmentController');
+
+Route::resource('premiums','PremiumController');

@@ -4,6 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
+use App\identitydetail;
+
+use App\addressdetail;
+
+use App\otherdetail;
+
+use App\loan_allotment;
+
+use App\Premium;
+
+use Carbon\Carbon;
+
 class PremiumController extends Controller
 {
     /**
@@ -13,14 +26,17 @@ class PremiumController extends Controller
      */
     public function index()
     {
-        //
-        $customerdetails=identitydetail::select('identitydetails.id', 'name', 'identitydetails.created_at', 'address', 'city','pin','state', 'phone_no','occupation')
+    
+            $currentdate=strtotime(Carbon::now());
+
+            $customerdetails=identitydetail::select('identitydetails.id', 'name', 'identitydetails.created_at', 'address', 'city','pin','state', 'phone_no','occupation','nextpremiumdate')
         ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
         ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
-        ->where('loan_alloted','>',)
+        ->join('loan_allotments','identitydetails.id','=','loan_allotments.customer_id')
+        ->where($currentdate,'>=','loan_alloted.nextpremiumdate')
         ->get();
 
-        return view('loan_allotments.index')->withMatchinglist($customerdetails);
+        return view('premiums.index')->withMatchinglist($customerdetails);
         
 
     }
