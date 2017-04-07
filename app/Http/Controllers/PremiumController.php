@@ -27,13 +27,13 @@ class PremiumController extends Controller
     public function index()
     {
     
-            $currentdate=strtotime(Carbon::now());
+            $currentdate=Carbon::now();
 
-            $customerdetails=identitydetail::select('identitydetails.id', 'name', 'identitydetails.created_at', 'address', 'city','pin','state', 'phone_no','occupation','nextpremiumdate')
+            $customerdetails=identitydetail::select('identitydetails.id', 'name', 'loan_allotments.created_at', 'address', 'city','pin','state', 'phone_no','occupation','nextpremiumdate')
         ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
         ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
         ->join('loan_allotments','identitydetails.id','=','loan_allotments.customer_id')
-        ->where($currentdate,'>=','loan_alloted.nextpremiumdate')
+        ->where('nextpremiumdate','<',$currentdate)
         ->get();
 
         return view('premiums.index')->withMatchinglist($customerdetails);
