@@ -25,6 +25,7 @@
    	{{$list->pin}}.<br>
    	Contact No:{{$list->phone_no}}
    	Occupation:{{$list->occupation}}
+    Registerd At:{{Date('d-m-y',strtotime($list->created_at))}}
              </p>
               <p><a class="btn btn-primary" href="{{route('loan_allotments.show',$list->id)}}" role="button">Allote Loans</a></p>
               <hr>

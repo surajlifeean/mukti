@@ -38,7 +38,10 @@ class PremiumController extends Controller
         ->where('nextpremiumdate','<',$currentdate)
         ->get();
 
-        return view('premiums.index')->withMatchinglist($customerdetails);
+        $countdues=count($customerdetails);
+
+
+        return view('premiums.index')->withMatchinglist($customerdetails)->withCount($countdues);
         
 
     }
@@ -91,8 +94,18 @@ class PremiumController extends Controller
             
         
         
-          if($currentdate>date('Y-m-d', strtotime($customerdetails->nextpremiumdate. ' + 1 days')))
-              $fine=(date('d',(strtotime($currentdate))-strtotime($customerdetails->nextpremiumdate)))*10;
+          if($currentdate>date('Y-m-d', strtotime($customerdetails->nextpremiumdate. ' + 1 days'))){
+                        echo ($currentdate."|");
+
+                        echo  ($customerdetails->nextpremiumdate);
+
+                        //$fine=date('d',(strtotime($currentdate))-strtotime($customerdetails->nextpremiumdate));
+                      $fdays=date('d',(strtotime($currentdate)))-date('d',(strtotime($customerdetails->nextpremiumdate)));
+                    if(($customerdetails->principal)<=5000)
+                      $fine=$fdays*10;
+                     else
+                       $fine=$fdays*20; 
+                        }
           return view('premiums.show')->withCustdetails($customerdetails)->withFine($fine)->withPremium($premium);
     }
 
