@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 
@@ -50,8 +51,11 @@
    		</tbody>
    	</table>
    	<a href="{{route('premiums.index')}}" class="btn btn-primary">Back</a>
+      @if($hide)
+        <p></p>
+      @else
    	<a href="{{route('premiums.edit',$custdetails->id)}}" class="btn btn-primary">Pay Premium</a>
- 
+      @endif
   </div>
 </div>
 @endsection

@@ -53,7 +53,10 @@ class PremiumController extends Controller
      */
     public function create()
     {
-        //
+    
+        $value = session('key');
+       return view('premiums.success')->withDate($value);
+
     }
 
     /**
@@ -86,6 +89,8 @@ class PremiumController extends Controller
 
         $loan_allotment->save();
 
+        $request->session()->put('key',$loan_allotment->nextpremiumdate);
+
         return redirect()->route('premiums.create');
 
 
@@ -105,6 +110,7 @@ class PremiumController extends Controller
             $currentdate=Carbon::now();
 
             $fine=0;
+            $fdays=0;
 
             $customerdetails=identitydetail::select('identitydetails.id', 'name', 'loan_allotments.created_at', 'address', 'city','pin','state', 'phone_no','occupation','nextpremiumdate','principal')
         ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
@@ -128,7 +134,13 @@ class PremiumController extends Controller
                      else
                        $fine=$fdays*20; 
                         }
-          return view('premiums.show')->withCustdetails($customerdetails)->withFine($fine)->withPremium($premium)->withFinedays($fdays);
+
+                        if($currentdate<($customerdetails->nextpremiumdate))
+                            $hidepaypremium=1;
+                        else
+                            $hidepaypremium=0;
+
+          return view('premiums.show')->withCustdetails($customerdetails)->withFine($fine)->withPremium($premium)->withFinedays($fdays)->withHide($hidepaypremium);
     }
 
     /**
@@ -141,19 +153,22 @@ class PremiumController extends Controller
     {
         //
 
-          $currentdate=Carbon::now();
+        $currentdate=Carbon::now();
         $fine=0;
-        $installmentno=premium::max('installment_no');
+       // $installment_no=premium::select('installment_no')->get();
+        $installmentno=0;
 
-        if(count($installmentno))
-        {
+       
 
-        $installment_no=premium::select('installment_no')
-                        ->where('customer_id','=',$id)
-                        ->orderby('installment_no','desc')
-                        ->first();
-        $installmentno=$installment_no->installment_no;   
-        }
+                  $installment_no=premium::select('installment_no')
+                              ->where('customer_id','=',$id)
+                              ->orderby('installment_no','desc')
+                              ->first();
+                  
+                  if(count($installment_no))
+                    $installmentno=$installment_no->installment_no; 
+
+        
 
         $customerdetails=identitydetail::select('identitydetails.id', 'name', 'loan_allotments.created_at','nextpremiumdate','loan_allotments.principal','ewi')
         ->join('loan_allotments','identitydetails.id','=','loan_allotments.customer_id')
@@ -169,13 +184,13 @@ class PremiumController extends Controller
                      else
                        $fine=$fdays*20; 
                         }
-          
-
         
-
                   $installmentno=$installmentno+1;
 
                   return view('premiums.pay')->withPreno($installmentno)->withMatchinglist($customerdetails)->withFine($fine);
+
+                  return redirect()->route('customers.create');
+
 
     }
 
