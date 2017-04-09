@@ -4,7 +4,7 @@
 @section('content')
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
-   <h1 class="alert alert-success" role="alert">Allote Amount</h1>
+   <h1 class="alert alert-success" role="alert">Allot Amount</h1>
    {{Form::open(['route'=>['loan_allotments.store'],'method'=>'POST'])}}
    {{Form::label('principal','Alloted Amount:')}}
 

@@ -13,7 +13,7 @@ use App\otherdetail;
 
 use App\loan_allotment;
 
-use App\Premium;
+use App\premium;
 
 use App\Rate;
 
@@ -65,6 +65,31 @@ class PremiumController extends Controller
     public function store(Request $request)
     {
         //
+
+        
+        $premium=new premium;
+
+        $premium->customer_id=$request->customer_id;
+
+        $premium->fine=$request->fine;
+       
+        $premium->premiumdate=$request->premium;
+        
+        $premium->installment_no=$request->preno;
+
+        $premium->save();
+
+        $loan_allotment=loan_allotment::where('customer_id','=',$premium->customer_id)
+            ->first();
+
+        $loan_allotment->nextpremiumdate=$loan_allotment->nextpremiumdate->addDays(1);
+
+        $loan_allotment->save();
+
+        return redirect()->route('premiums.create');
+
+
+
     }
 
     /**
@@ -95,9 +120,6 @@ class PremiumController extends Controller
         
         
           if($currentdate>date('Y-m-d', strtotime($customerdetails->nextpremiumdate. ' + 1 days'))){
-                        echo ($currentdate."|");
-
-                        echo  ($customerdetails->nextpremiumdate);
 
                         //$fine=date('d',(strtotime($currentdate))-strtotime($customerdetails->nextpremiumdate));
                       $fdays=date('d',(strtotime($currentdate)))-date('d',(strtotime($customerdetails->nextpremiumdate)));
@@ -106,7 +128,7 @@ class PremiumController extends Controller
                      else
                        $fine=$fdays*20; 
                         }
-          return view('premiums.show')->withCustdetails($customerdetails)->withFine($fine)->withPremium($premium);
+          return view('premiums.show')->withCustdetails($customerdetails)->withFine($fine)->withPremium($premium)->withFinedays($fdays);
     }
 
     /**
@@ -118,6 +140,43 @@ class PremiumController extends Controller
     public function edit($id)
     {
         //
+
+          $currentdate=Carbon::now();
+        $fine=0;
+        $installmentno=premium::max('installment_no');
+
+        if(count($installmentno))
+        {
+
+        $installment_no=premium::select('installment_no')
+                        ->where('customer_id','=',$id)
+                        ->orderby('installment_no','desc')
+                        ->first();
+        $installmentno=$installment_no->installment_no;   
+        }
+
+        $customerdetails=identitydetail::select('identitydetails.id', 'name', 'loan_allotments.created_at','nextpremiumdate','loan_allotments.principal','ewi')
+        ->join('loan_allotments','identitydetails.id','=','loan_allotments.customer_id')
+        ->join('rates','loan_allotments.principal','=','rates.principal')
+        ->where('identitydetails.id','=',$id)
+        ->first();
+        if($currentdate>date('Y-m-d', strtotime($customerdetails->nextpremiumdate. ' + 1 days'))){
+
+                        //$fine=date('d',(strtotime($currentdate))-strtotime($customerdetails->nextpremiumdate));
+                      $fdays=date('d',(strtotime($currentdate)))-date('d',(strtotime($customerdetails->nextpremiumdate)));
+                    if(($customerdetails->principal)<=5000)
+                      $fine=$fdays*10;
+                     else
+                       $fine=$fdays*20; 
+                        }
+          
+
+        
+
+                  $installmentno=$installmentno+1;
+
+                  return view('premiums.pay')->withPreno($installmentno)->withMatchinglist($customerdetails)->withFine($fine);
+
     }
 
     /**

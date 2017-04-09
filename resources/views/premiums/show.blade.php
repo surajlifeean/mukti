@@ -31,7 +31,7 @@
    	</td></tr>
 
    	<tr><td>
-   	Fine:{{$fine}}
+   	Fine for {{$finedays}} days is {{$fine}}
    	</td></tr>
 
    	<tr><td>
@@ -42,12 +42,15 @@
    	Joined At:{{date('jS M, Y', strtotime($custdetails->created_at))}}
    	</td></tr>
    <tr><td>
-   	Date of Premium:{{date('jS M, Y', strtotime($custdetails->nextpremiumdate))}}
+   	Date of Premium:{{date('jS M, Y', strtotime($custdetails->nextpremiumdate))}}<br>
+      </td></tr>
+   <tr><td>
+      Today is:{{date("jS M, Y")}}
    	</td></tr>
    		</tbody>
    	</table>
-   	<a href="{{url('home')}}" class="btn btn-primary">Home Page</a>
-   	<a href="{{url('home')}}" class="btn btn-primary">Pay Premium</a>
+   	<a href="{{route('premiums.index')}}" class="btn btn-primary">Back</a>
+   	<a href="{{route('premiums.edit',$custdetails->id)}}" class="btn btn-primary">Pay Premium</a>
  
   </div>
 </div>
