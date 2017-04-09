@@ -26,7 +26,7 @@
 
     <input type="hidden" name='preno' value={{$preno}}></input>
 
-{{ Form::submit('Pay Loan',array('class'=>'btn btn-success btn-lg btn-block','style'=>'margin-top:20px'))}}
+{{ Form::submit('Pay EWI',array('class'=>'btn btn-success btn-lg btn-block','style'=>'margin-top:20px'))}}
 
 
    {{Form::close()}}

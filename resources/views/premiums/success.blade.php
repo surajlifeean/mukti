@@ -5,7 +5,7 @@
 
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-
+<h1>INSTALLMENT PAID</h1>
 <div class="alert alert-success" role="alert"><h2>Next Premium Date:{{date('d/m/y',strtotime($date))}}</h2></div>
 	</div>
 </div>
