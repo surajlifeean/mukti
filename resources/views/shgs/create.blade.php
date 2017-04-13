@@ -31,8 +31,11 @@
           
     @endforeach
     </select>
-    {{Form::submit('Submit', ['class'=>'btn btn-primary form-spacing-top'])}}
+    {{Form::submit('Go Create!', ['class'=>'btn btn-primary form-spacing-top'])}}
+    
+              <p><a class="btn btn-default form-spacing-top" href="{{route('shgs.index')}}" role="button"><span class="glyphicon glyphicon-arrow-left" data-toggle="tooltip" title="Back!"></span></a></p>
     {{Form::close()}}
+
 
 	</div>
 </div>

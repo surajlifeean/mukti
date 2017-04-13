@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\otherdetail;
+use App\identitydetail;
 
 class indorshgcontroller extends Controller
 {
@@ -30,7 +30,11 @@ class indorshgcontroller extends Controller
     {
 
         
-        $details=otherdetail::where('group_id','>',0)
+        $details=identitydetail::select('identitydetails.id', 'name','address', 'city','pin',
+         'state', 'group_id', 'phone_no','group_id')
+        ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
+        ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
+                    ->where('group_id','>',0)
                     ->orderby('group_id','desc')
                     ->get();
         

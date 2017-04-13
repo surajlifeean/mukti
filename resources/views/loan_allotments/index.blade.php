@@ -6,7 +6,7 @@
 @section('content')
 
 <div class="col-md-8 col-md-offset-2">
-   <h1 class="alert alert-success" role="alert">Loan Allotment</h1>
+   <h1 class="alert alert-success" role="alert">Loan Allotment<span class="badge">{{$count}}</span></h1>
 </div>
 
 <table class="table table-striped">

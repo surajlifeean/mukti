@@ -28,6 +28,10 @@
    	Occupation:{{$list->occupation}}<br>
     Loan Alloted on:{{date('jS M, Y', strtotime($list->created_at))}}<br>
     Date of Payment:{{date('jS M, Y', strtotime($list->nextpremiumdate))}}
+
+    @if($list->group_id)
+     <b>SHG:{{$list->group_id}}</b>
+    @endif
              </p>
 
               <p><a class="btn btn-primary" href="{{route('premiums.show',$list->id)}}" role="button">Deposit Premium</a></p>

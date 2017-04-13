@@ -32,7 +32,9 @@ class Loan_allotmentController extends Controller
         ->where('loan_alloted','=',0)
         ->get();
 
-        return view('loan_allotments.index')->withMatchinglist($customerdetails);
+          $countdues=count($customerdetails);
+
+        return view('loan_allotments.index')->withMatchinglist($customerdetails)->withCount($countdues);
         
 
     }
