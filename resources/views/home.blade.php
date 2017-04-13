@@ -13,21 +13,24 @@
                 <b>
                     
                     <tr>    
-                        <td class="danger"><a href="{{route('rates.getrates')}}">Check Rates</a></td>
+                        <td class="danger" align="center"><a href="{{route('rates.getrates')}}">Check Rates</a></td>
                         
                     </tr>
                     <tr>
-                        <td class="active"><a href="{{route('customers.index')}}">Register Customer</a></td>
+                        <td class="active" align="center"><a href="{{route('indorshg.index')}}">Register Customer</a></td>
                     </tr>
                     <tr>
-                        <td class="success"><a href="{{route('searchcustomers.index')}}">  Search Customer</a></td>
+                        <td class="success" align="center"><a href="{{route('searchcustomers.index')}}">  Search Customer</a></td>
                     </tr>
                     <tr>    
-                        <td class="warning"><a href="{{route('loan_allotments.index')}}">  Allote Loan</a></td>
+                        <td class="warning" align="center"><a href="{{route('loan_allotments.index')}}">  Allot Loan</a></td>
                     </tr>
                     <tr>    
-                        <td class="danger"><a href="{{route('premiums.index')}}"> Premium</a></td>
+                        <td class="danger" align="center"><a href="{{route('premiums.index')}}"> Premium</a></td>
                         
+                    </tr>
+                                        <tr>
+                        <td class="success" align="center"><a href="{{route('shgs.index')}}">SHG</a></td>
                     </tr>
 
 

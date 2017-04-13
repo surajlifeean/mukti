@@ -25,6 +25,13 @@ class CustomerController extends Controller
     public function index()
     {
         //
+        $count = session('count');
+
+
+
+        session(['count' => $count-1]);
+        
+      
         return view('customer.create');
     }
 
@@ -89,18 +96,20 @@ class CustomerController extends Controller
 
         $identitydetail->save();
 
-    
+          $gid = session('groupid');
+                
+
         $addressdetail =new addressdetail;
 
           $addressdetail->address =$request->address;
 
           $addressdetail->city =$request->city;
 
-          $addressdetail->pin =$request->state;
+          $addressdetail->pin =$request->pin;
 
-          $addressdetail->state =$request->country;   
+          $addressdetail->state =$request->state;   
 
-          $addressdetail->country =$request->pin;
+          $addressdetail->country =$request->country;
 
           $addressdetail->phone_no =$request->contact;
 
@@ -128,6 +137,10 @@ class CustomerController extends Controller
           $otherdetail->registered_by=Auth::user()->name;
 
           $otherdetail->customer_id=$identitydetail->id;
+
+          $otherdetail->group_id=$gid;
+
+
 
           $otherdetail->save();
 
@@ -162,15 +175,17 @@ class CustomerController extends Controller
             join otherdetails o on i.id=o.customer_id*/
     $customerdetails=identitydetail::select('identitydetails.id', 'name', 'gardian', 'relation', 'gender', 'marital_status',
           'pan_no', 'aadhar_no', 'idproof', 'dob', 'identitydetails.created_at', 'identitydetails.updated_at', 'address', 'city','pin',
-         'state', 'country', 'phone_no','loan_alloted',
+         'state', 'group_id', 'phone_no','loan_alloted',
          'addressproof', 'salary', 'occupation','registered_by')
         ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
         ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
         ->where('identitydetails.id','=',$id)
         ->first();
         
+        $count = session('count');
 
-        return view('customer.show')->withCustdetails($customerdetails);
+        
+        return view('customer.show')->withCustdetails($customerdetails)->withCount($count);
 
     }
 
@@ -194,7 +209,35 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //USED to set the value of group size and group number
+        $grouptype=$request->indorshg;
+
+        $gid=0;
+
+        if($grouptype=='shg')
+        {
+        $otherdetails=otherdetail::select('group_id')
+                        ->orderby('group_id','desc')
+                        ->first();
+        $gid=$otherdetails->group_id;
+
+        $request->session()->put('groupid',$gid+1);
+
+        }
+
+        else
+            $request->session()->put('groupid',$gid);
+
+
+
+
+        $request->session()->put('count',$request->group_size);
+
+        
+
+                  return redirect()->route('customers.index');
+
+
     }
 
     /**

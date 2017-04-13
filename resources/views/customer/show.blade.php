@@ -49,8 +49,10 @@
    	Address:{{$custdetails->address}},
    	{{$custdetails->city}},
    	{{$custdetails->pin}},
-   	{{$custdetails->state}},
-   	{{$custdetails->country}}.
+   	{{$custdetails->state}}.
+      </td></tr>
+      <tr><td>
+   	Group_id:{{$custdetails->group_id}}.
    	</td></tr>
     <tr><td>
    	Contact No:{{$custdetails->phone_no}}
@@ -79,6 +81,11 @@
       @if($custdetails->loan_alloted)
    	<a href="{{route('premiums.show',$custdetails->id)}}" class="btn btn-primary">Premium Status</a>
       @endif
+
+         @if($count)
+       <a href="{{route('customers.index')}}" class="btn btn-primary">Add Next</a>
+      @endif
+ 
 </td></tr>
   </div>
 </div>

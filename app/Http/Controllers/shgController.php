@@ -6,17 +6,11 @@ use Illuminate\Http\Request;
 
 use App\identitydetail;
 
-use App\addressdetail;
 
 use App\otherdetail;
 
-use App\loan_allotment;
 
-use Carbon\Carbon;
-
-use Session;
-
-class Loan_allotmentController extends Controller
+class shgController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,15 +20,7 @@ class Loan_allotmentController extends Controller
     public function index()
     {
         //
-            $customerdetails=identitydetail::select('identitydetails.id', 'name', 'identitydetails.created_at', 'address', 'city','pin','state', 'phone_no','occupation','group_id')
-        ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
-        ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
-        ->where('loan_alloted','=',0)
-        ->get();
-
-        return view('loan_allotments.index')->withMatchinglist($customerdetails);
-        
-
+        return view('shgs.options');
     }
 
     /**
@@ -45,6 +31,16 @@ class Loan_allotmentController extends Controller
     public function create()
     {
         //
+        //$members=identitydetail::all();
+
+        $members=identitydetail::select('identitydetails.id','name','phone_no')
+        ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
+        ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
+        ->where('group_id','=',0)
+        ->get();
+
+
+        return view('shgs.create')->withMembers($members);
 
     }
 
@@ -57,39 +53,26 @@ class Loan_allotmentController extends Controller
     public function store(Request $request)
     {
         //
-        $loan=new loan_allotment;
+        //dd($request);
+            $groupmembers=$request->groupmembers;
 
-        $loan->principal=$request->principal;
-
-        $loan->processfee=$request->processfee;
-       
-        $loan->padscost=$request->padscost;
-        
-        $loan->customer_id=$request->customer_id;
-
-        $loan->nextpremiumdate=Carbon::now()->addDays(1);
-
-        $loan->status="active";
-
-        $loan->save();
-
-       // $loan->save();
-
-        $otherdetails=otherdetail::where('customer_id','=',$request->customer_id)->first();
-
-        $otherdetails->loan_alloted=1;
-
-        $otherdetails->save();
-
-
-
-        Session::flash('success','The loan is sucessfully Alloted!');
-
-        return view('loan_allotments.success');
+            $otherdetails=otherdetail::select('group_id')
+                        ->orderby('group_id','desc')
+                        ->first();
+            $gid=$otherdetails->group_id;
 
 
 
 
+        foreach ($groupmembers as $member) {
+            
+            $otherdetails=otherdetail::where('customer_id','=',$member)
+              ->first();
+            $otherdetails->group_id=$gid+1;
+
+            $otherdetails->save();
+
+        }
     }
 
     /**
@@ -101,7 +84,6 @@ class Loan_allotmentController extends Controller
     public function show($id)
     {
         //
-        return view('loan_allotments.allote')->withCustomerid($id);
     }
 
     /**

@@ -25,7 +25,11 @@
    	{{$list->pin}}.<br>
    	Contact No:{{$list->phone_no}}
    	Occupation:{{$list->occupation}}<br>
-    Registerd At:{{Date('d-m-y',strtotime($list->created_at))}}
+    Registerd At:{{Date('d-m-y',strtotime($list->created_at))}}<br>
+
+    @if($list->group_id)
+     <b>SHG:{{$list->group_id}}</b>
+    @endif
              </p>
               <p><a class="btn btn-primary" href="{{route('loan_allotments.show',$list->id)}}" role="button">Allote Loans</a></p>
               <hr>

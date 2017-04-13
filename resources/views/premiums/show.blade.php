@@ -1,4 +1,6 @@
 
+
+
 @extends('layouts.app')
 
 
@@ -56,6 +58,8 @@
       @else
    	<a href="{{route('premiums.edit',$custdetails->id)}}" class="btn btn-primary">Pay Premium</a>
       @endif
+
+ 
   </div>
 </div>
 @endsection
