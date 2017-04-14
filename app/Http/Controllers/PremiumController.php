@@ -170,7 +170,7 @@ class PremiumController extends Controller
 
         
 
-        $customerdetails=identitydetail::select('identitydetails.id', 'name', 'loan_allotments.created_at','nextpremiumdate','loan_allotments.principal','ewi')
+        $customerdetails=identitydetail::select('identitydetails.id', 'name', 'loan_allotments.created_at','nextpremiumdate','loan_allotments.principal','ewi','noofinstallments')
         ->join('loan_allotments','identitydetails.id','=','loan_allotments.customer_id')
         ->join('rates','loan_allotments.principal','=','rates.principal')
         ->where('identitydetails.id','=',$id)
@@ -187,9 +187,9 @@ class PremiumController extends Controller
         
                   $installmentno=$installmentno+1;
 
-                  return view('premiums.pay')->withPreno($installmentno)->withMatchinglist($customerdetails)->withFine($fine);
+                  return view('premiums.pay')->withPreno($installmentno)->withMatchinglist($customerdetails)->withFine($fine)->withTotinst($customerdetails->noofinstallments);
 
-                  return redirect()->route('customers.create');
+                 // return redirect()->route('customers.create');
 
 
     }

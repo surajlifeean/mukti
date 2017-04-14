@@ -17,7 +17,7 @@
    {{Form::label('fine','Fine:')}}   
    <input type="text" name="fine" class="form-control" value={{$fine}}>
    
-   Installment No:{{Form::label('fine',$preno)}}   
+   Installment No:{{Form::label('fine',$preno)}}/<b>{{$totinst}}</b>
    
    <input type="hidden" name="premium" class="form-control" value={{$matchinglist->nextpremiumdate}}>
    

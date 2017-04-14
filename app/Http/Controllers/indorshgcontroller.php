@@ -28,7 +28,7 @@ class indorshgcontroller extends Controller
 
     public function view()
     {
-
+        // to view the groups
         
         $details=identitydetail::select('identitydetails.id', 'name','address', 'city','pin',
          'state', 'group_id', 'phone_no','group_id')
@@ -41,6 +41,19 @@ class indorshgcontroller extends Controller
         return view('shgs.view')->withDetails($details);
     }
 
+        public function shgallotment($id)
+    {
+             $details=identitydetail::select('identitydetails.id', 'name','address', 'city','pin',
+         'state', 'group_id', 'phone_no','group_id')
+        ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
+        ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
+                    ->where('group_id','=',$id)
+                    ->orderby('id','desc')
+                    ->get();
+       
+
+        return view('shgs.shgloanallotment')->withDetails($details)->withGid($id);
+    }
     
 
 }

@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        session(['count' =>0]);
+        
         return view('home');
     }
 }

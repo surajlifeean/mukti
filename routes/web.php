@@ -36,6 +36,9 @@ Route::resource('premiums','PremiumController');
 
 Route::resource('shgs','shgController');
 
+ Route::get('allot/{gid}',['uses'=>'indorshgcontroller@shgallotment','as'=>'shg.allot']);
+
+
 
  Route::get('rates',['as'=>'rates.getrates','uses'=>'RateController@getrates']);
 

@@ -103,6 +103,14 @@ class Loan_allotmentController extends Controller
     public function show($id)
     {
         //
+        $allotshg=otherdetail::where('customer_id','=',$id)
+        ->first();
+
+    
+        if($allotshg->group_id >0)
+        return redirect()->route('shg.allot',$allotshg->group_id);
+        
+        else
         return view('loan_allotments.allote')->withCustomerid($id);
     }
 

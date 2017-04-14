@@ -9,6 +9,12 @@ use App\identitydetail;
 
 use App\otherdetail;
 
+use App\loan_allotment;
+
+use Carbon\Carbon;
+
+use Session;
+
 
 class shgController extends Controller
 {
@@ -33,10 +39,11 @@ class shgController extends Controller
         //
         //$members=identitydetail::all();
 
-        $members=identitydetail::select('identitydetails.id','name','phone_no')
+        $members=identitydetail::select('identitydetails.id','name','phone_no','loan_alloted')
         ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
         ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
         ->where('group_id','=',0)
+        ->where('loan_alloted','=',0)
         ->get();
 
 
@@ -64,7 +71,7 @@ class shgController extends Controller
 
 
 
-        foreach ($groupmembers as $member) {
+        foreach($groupmembers as $member) {
             
             $otherdetails=otherdetail::where('customer_id','=',$member)
               ->first();
@@ -107,6 +114,88 @@ class shgController extends Controller
     public function update(Request $request, $id)
     {
         //
+    
+
+     $ids=$request->id;
+
+     $amts=$request->amt;
+
+     
+
+           if($request->weightage =='equal'){
+
+           foreach($ids as $id) {
+
+            echo $id;
+            
+            $otherdetails=otherdetail::where('otherdetails.customer_id','=',$id)
+
+              ->first();
+
+              $otherdetails->loan_alloted=1;
+
+              $otherdetails->save();
+
+        $loan=new loan_allotment;
+
+        $loan->principal=$request->amount;
+
+        $loan->processfee=50;
+       
+        $loan->padscost=45;
+        
+        $loan->customer_id=$id;
+
+        $loan->nextpremiumdate=Carbon::now()->addDays(1);
+
+        $loan->status="active";
+
+        $loan->save();
+
+
+            //  $otherdetails->principal=$request->amount;
+            
+             //  $otherdetails->save();
+
+        }
+    }
+    else{
+        foreach($ids as $key=>$id) {
+
+            echo $id;
+            
+            $otherdetails=otherdetail::where('otherdetails.customer_id','=',$id)
+
+              ->first();
+
+              $otherdetails->loan_alloted=1;
+
+              $otherdetails->save();
+
+        $loan=new loan_allotment;
+
+        $loan->principal=$amts[$key];
+
+        $loan->processfee=50;
+       
+        $loan->padscost=45;
+        
+        $loan->customer_id=$id;
+
+        $loan->nextpremiumdate=Carbon::now()->addDays(1);
+
+        $loan->status="active";
+
+        $loan->save();
+    }
+}
+
+Session::flash('success','The loan is sucessfully Alloted!');
+
+        return view('loan_allotments.success');
+
+            
+
     }
 
     /**

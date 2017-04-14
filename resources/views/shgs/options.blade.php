@@ -23,10 +23,6 @@
                     </tr>
 
                     <tr>    
-                        <td class="warning" align="center"><a href="{{route('loan_allotments.index')}}"> SHG Loan Allotment</a></td>
-                    </tr>
-
-                    <tr>    
                         <td class="success" align="center"><a href="{{route('premiums.index')}}"> Premium</a></td>
                         
                     </tr>

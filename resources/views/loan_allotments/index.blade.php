@@ -31,7 +31,7 @@
      <b>SHG:{{$list->group_id}}</b>
     @endif
              </p>
-              <p><a class="btn btn-primary" href="{{route('loan_allotments.show',$list->id)}}" role="button">Allote Loans</a></p>
+              <p><a class="btn btn-primary" href="{{route('loan_allotments.show',$list->id)}}" role="button">Allot Loans</a></p>
               <hr>
          </div>
        </div>
