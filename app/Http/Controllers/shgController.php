@@ -79,6 +79,9 @@ class shgController extends Controller
 
             $otherdetails->save();
 
+            return view('indorshg.view'); 
+
+
         }
     }
 
@@ -115,7 +118,7 @@ class shgController extends Controller
     {
         //
     
-
+    
      $ids=$request->id;
 
      $amts=$request->amt;
@@ -124,7 +127,7 @@ class shgController extends Controller
 
            if($request->weightage =='equal'){
 
-           foreach($ids as $id) {
+           foreach($ids as $key=>$id) {
 
             echo $id;
             
@@ -140,9 +143,14 @@ class shgController extends Controller
 
         $loan->principal=$request->amount;
 
+        if($request->amount <6000)
         $loan->processfee=50;
+
+        else
+        $loan->processfee=100;
+
        
-        $loan->padscost=45;
+        $loan->padscost=$pdsqty[$key];
         
         $loan->customer_id=$id;
 
@@ -176,9 +184,14 @@ class shgController extends Controller
 
         $loan->principal=$amts[$key];
 
-        $loan->processfee=50;
        
-        $loan->padscost=45;
+        if($request->amount <6000)
+        $loan->processfee=50;
+
+        else
+        $loan->processfee=100;
+
+        $loan->padscost=$pdsqty[$key];
         
         $loan->customer_id=$id;
 

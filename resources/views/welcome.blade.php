@@ -81,7 +81,7 @@
                 <div class="title m-b-md">
                     MukTi
                 </div>
-d
+
             </div>
         </div>
     </body>

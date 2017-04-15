@@ -36,6 +36,8 @@ Route::resource('premiums','PremiumController');
 
 Route::resource('shgs','shgController');
 
+Route::resource('documents','ImageController');
+
  Route::get('allot/{gid}',['uses'=>'indorshgcontroller@shgallotment','as'=>'shg.allot']);
 
 

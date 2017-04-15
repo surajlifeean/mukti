@@ -28,6 +28,9 @@
     <thead>
           <tr>
               <th> Member</th>
+              
+              <th> Pads Qty</th>
+
               <th class="gs"> Loan Amount</th>
           </tr>
     </thead>
@@ -35,11 +38,19 @@
     @foreach($details as $detail)
     
      <tr>
-        <td><input type="hidden" name="id[]" value={{$detail->id}}>{{$detail->name}}
-        </td><td> 
-        <div class="gs"> <select class="group_size form-control" name="amt[]">
+        <td>
+            <input type="hidden" name="id[]" value={{$detail->id}}>{{$detail->name}}
+        </td>
 
-        <option value="0000">Select Amount</option>
+        <td>
+              <input type="text" class="form-control" name="pdsqty[]">
+          </td>
+
+
+        <td> 
+         <select class="gs form-control" name="amt[]">
+
+          <option value="0000">Select Amount</option>
      
      
           <option value="1000">Rs 1000</option>
@@ -66,8 +77,9 @@
           <option value="10000">Rs 10000</option>
 
           </select>
-          </div>
+          
           </td>
+          
           </tr>
 		  @endforeach
 
