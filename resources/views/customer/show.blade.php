@@ -11,6 +11,12 @@
 
    <table class="table table-striped">
    		<tbody>
+
+         <tr><td align="center">
+               <img src="{{asset('images/'.$img)}}">
+
+         </td></tr>
+
    		<tr><td>
    Customer Name: {{$custdetails->name}}
 

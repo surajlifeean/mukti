@@ -54,6 +54,8 @@ class ImageController extends Controller
             $img->save();
         }
 
+        return view('customer.showimage')->withImg($img);
+
     }
 
     /**

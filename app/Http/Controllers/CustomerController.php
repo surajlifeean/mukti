@@ -15,6 +15,11 @@ use App\otherdetail;
 
 use Session;
 
+use Image;
+
+use App\document;
+
+
 class CustomerController extends Controller
 {
     /**
@@ -144,6 +149,20 @@ class CustomerController extends Controller
 
           $otherdetail->save();
 
+          $img=new document;
+        if($request->hasFile('featured_image')){
+            $image=$request->file('featured_image');
+            $filename=time().'.'.$image->getClientOriginalExtension();//part of image intervention library
+            $location=public_path('/images/'.$filename);
+
+            Image::make($image)->resize(200,200)->save($location);
+            $img->image=$filename;
+
+            $img->customer_id=$identitydetail->id;
+
+            $img->save();
+        }
+
 
 
 
@@ -182,10 +201,21 @@ class CustomerController extends Controller
         ->where('identitydetails.id','=',$id)
         ->first();
         
+    
+        $imag=document::where('documents.customer_id','=',$customerdetails->id)->first();
+
+         if(count($imag))
+            $img=$imag->image;
+         else
+            $img="default-user.png";
+
+
         $count = session('count');
 
+
+
         
-        return view('customer.show')->withCustdetails($customerdetails)->withCount($count);
+        return view('customer.show')->withCustdetails($customerdetails)->withCount($count)->withImg($img);
 
     }
 

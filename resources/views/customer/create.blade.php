@@ -17,7 +17,7 @@
 
    <hr>
    <h3>Identity Details</h3>
-{!! Form::open(['route' => 'customers.store','data-parsley-validate'=>'']) !!}
+{!! Form::open(['route' => 'customers.store','data-parsley-validate'=>'','files'=>true]) !!}
 
 
     			{{ Form::label('name','Name:')}}
@@ -191,6 +191,9 @@
  
 	
 
+    {{Form::label('featured_image','Upload Image')}}
+
+    {{Form::file('featured_image')}}
 
 
     {{ Form::submit('Save and Next',array('class'=>'btn btn-success btn-lg btn-block','style'=>'margin-top:20px'))}}
