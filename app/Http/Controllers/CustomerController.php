@@ -149,6 +149,7 @@ class CustomerController extends Controller
 
           $otherdetail->save();
 
+
           $img=new document;
         if($request->hasFile('featured_image')){
             $image=$request->file('featured_image');

@@ -88,8 +88,12 @@
    	<a href="{{route('premiums.show',$custdetails->id)}}" class="btn btn-primary">Premium Status</a>
       @endif
 
-         @if($count)
+         @if($count>0)
        <a href="{{route('customers.index')}}" class="btn btn-primary">Add Next</a>
+         @endif
+         @if($count==0)
+       <a href="{{route('shg.muktimaa')}}" class="btn btn-primary">Nominate Mukti Maa</a>
+         
       @endif
  
 </td></tr>

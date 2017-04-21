@@ -22,6 +22,11 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('indorshg', ['as'=>'indorshg.index', 'uses'=>'indorshgcontroller@index']);
 
+
+Route::post('storemm', ['as'=>'muktimaa.store', 'uses'=>'indorshgcontroller@storemm']);
+
+
+
 Route::get('view', ['as'=>'indorshg.view', 'uses'=>'indorshgcontroller@view']);
 
 Route::get('/logout', 'Auth\LoginController@logout');
@@ -39,6 +44,9 @@ Route::resource('shgs','shgController');
 Route::resource('documents','ImageController');
 
  Route::get('allot/{gid}',['uses'=>'indorshgcontroller@shgallotment','as'=>'shg.allot']);
+
+
+ Route::get('muktimaa',['uses'=>'indorshgcontroller@selectmm','as'=>'shg.muktimaa']);
 
 
 

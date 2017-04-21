@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\identitydetail;
 
+use App\muktimaa;
+
 class indorshgcontroller extends Controller
 {
     /**
@@ -54,6 +56,43 @@ class indorshgcontroller extends Controller
 
         return view('shgs.shgloanallotment')->withDetails($details)->withGid($id);
     }
+
+        public function selectmm()
+    {
+
+        $gid = session('groupid');
+          
+          $groupmembers=identitydetail::select('identitydetails.id', 'name','group_id')
+        ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
+        ->where('group_id','=',$gid)
+        ->get();
+        
+
+        return view('customer.muktimaa')->withGroupmembers($groupmembers);
+    }
+
+
     
+        public function storemm(Request $request)
+    {
+
+        //dd($request);
+        $gid = session('groupid');
+          
+        $muktimaa =new muktimaa;
+        
+        $muktimaa->customer_id =$request->gender;
+
+        $muktimaa->group_id =$gid;
+
+        $muktimaa->save();
+
+        return view('customer.kudos')->withGid($gid);
+    
+
+
+
+    }
+
 
 }

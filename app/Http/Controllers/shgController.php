@@ -79,10 +79,10 @@ class shgController extends Controller
 
             $otherdetails->save();
 
-            return view('indorshg.view'); 
-
-
         }
+
+
+      return redirect()->route('indorshg.view');
     }
 
     /**
@@ -116,12 +116,14 @@ class shgController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    
+        //used to store alloted loan both equal and variable weightage into the database
+    //dd($request);
     
      $ids=$request->id;
 
      $amts=$request->amt;
+
+     $pdsqty=$request->pdsqty;
 
      
 
@@ -129,7 +131,7 @@ class shgController extends Controller
 
            foreach($ids as $key=>$id) {
 
-            echo $id;
+    
             
             $otherdetails=otherdetail::where('otherdetails.customer_id','=',$id)
 
@@ -150,7 +152,7 @@ class shgController extends Controller
         $loan->processfee=100;
 
        
-        $loan->padscost=$pdsqty[$key];
+        $loan->padscost=$pdsqty[$key]*4.5;
         
         $loan->customer_id=$id;
 
@@ -191,7 +193,7 @@ class shgController extends Controller
         else
         $loan->processfee=100;
 
-        $loan->padscost=$pdsqty[$key];
+        $loan->padscost=$pdsqty[$key]*4.5;
         
         $loan->customer_id=$id;
 
@@ -206,6 +208,7 @@ class shgController extends Controller
 Session::flash('success','The loan is sucessfully Alloted!');
 
         return view('loan_allotments.success');
+
 
             
 
