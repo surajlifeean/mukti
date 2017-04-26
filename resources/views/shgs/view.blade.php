@@ -1,8 +1,10 @@
 
+{{dump($details)}}
 @extends('layouts.app')
 
 
 @section('content')
+
 
 <div class="col-md-8 col-md-offset-2">
    <h1 class="alert alert-success" role="alert">View Groups</h1>
@@ -25,11 +27,16 @@
        		 @if ($loop->first)
                 	@php
                    		$oldval=$detail->group_id
+
                    	@endphp
+                <h3>Group ID:{{$detail->group_id}}</h3>
                 @else
                   @if($oldval != $detail->group_id)
-                   <p><a class="btn btn-primary" href="{{route('loan_allotments.index')}}" role="button">Group  Status</a></p>
-                   <hr>
+                   <p><a class="btn btn-primary" href="{{route('shgs.show',$oldval)}}" role="button">Group  Status</a></p>
+                                      <hr>
+
+                    <h3>Group ID:{{$detail->group_id}}</h3>
+
 
               
                   	@php
@@ -39,17 +46,16 @@
                 @endif
 
 
-       			<h3>{{ucwords($detail->name)}}  </h3>
+       			        {{ucwords($detail->name)}} 
              
-                Group ID:{{$detail->group_id}}<br>
                     Resident of:{{$detail->address}},
-   	{{$detail->city}},
-   	<br>
-   	Contact No:{{$detail->phone_no}}
+   	                {{$detail->city}},
+   	                    <br>
+   	                Contact No:{{$detail->phone_no}}
    	
 
                                @if ($loop->last)
-                	<p><a class="btn btn-primary" href="{{route('loan_allotments.index')}}" role="button">Group Status</a></p>
+                	<p><a class="btn btn-primary" href="{{route('shgs.show',$oldval)}}" role="button">Group Status</a></p>
               
                 @endif
 
@@ -65,4 +71,5 @@
       
        </tbody>
   </table>
+  
 @endsection

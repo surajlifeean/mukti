@@ -28,6 +28,7 @@ class PremiumController extends Controller
      */
     public function index()
     {
+        // shows list of people whose premium is due
     
             $currentdate=Carbon::now();
 
@@ -105,7 +106,7 @@ class PremiumController extends Controller
      */
     public function show($id)
     {
-        //
+        //calls premium status page
 
             $currentdate=Carbon::now();
 
@@ -151,7 +152,7 @@ class PremiumController extends Controller
      */
     public function edit($id)
     {
-        //
+        //calls deposite premium page
 
         $currentdate=Carbon::now();
         $fine=0;

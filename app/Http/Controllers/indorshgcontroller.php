@@ -41,6 +41,7 @@ class indorshgcontroller extends Controller
                     ->get();
         
         return view('shgs.view')->withDetails($details);
+    
     }
 
         public function shgallotment($id)

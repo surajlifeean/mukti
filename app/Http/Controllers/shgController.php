@@ -121,13 +121,12 @@ class shgController extends Controller
     
      $ids=$request->id;
 
-     $amts=$request->amt;
+     //$amts=$request->amt;
 
      $pdsqty=$request->pdsqty;
 
      
 
-           if($request->weightage =='equal'){
 
            foreach($ids as $key=>$id) {
 
@@ -143,7 +142,7 @@ class shgController extends Controller
 
         $loan=new loan_allotment;
 
-        $loan->principal=$request->amount;
+        $loan->principal=$request->amt;
 
         if($request->amount <6000)
         $loan->processfee=50;
@@ -168,43 +167,8 @@ class shgController extends Controller
              //  $otherdetails->save();
 
         }
-    }
-    else{
-        foreach($ids as $key=>$id) {
-
-            echo $id;
-            
-            $otherdetails=otherdetail::where('otherdetails.customer_id','=',$id)
-
-              ->first();
-
-              $otherdetails->loan_alloted=1;
-
-              $otherdetails->save();
-
-        $loan=new loan_allotment;
-
-        $loan->principal=$amts[$key];
-
-       
-        if($request->amount <6000)
-        $loan->processfee=50;
-
-        else
-        $loan->processfee=100;
-
-        $loan->padscost=$pdsqty[$key]*4.5;
-        
-        $loan->customer_id=$id;
-
-        $loan->nextpremiumdate=Carbon::now()->addDays(1);
-
-        $loan->status="active";
-
-        $loan->save();
-    }
-}
-
+    
+    
 Session::flash('success','The loan is sucessfully Alloted!');
 
         return view('loan_allotments.success');

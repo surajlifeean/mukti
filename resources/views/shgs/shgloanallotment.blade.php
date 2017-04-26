@@ -26,9 +26,8 @@
 <br>
 -->
 
-  <input type="hidden" name="weightage" value="equal"> 
 
-    <select class="principal form-control" name="amt[]">
+    <select class="principal form-control" name="amt">
 
           <option value="0000">Select Amount</option>
      
