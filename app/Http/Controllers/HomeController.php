@@ -25,6 +25,7 @@ class HomeController extends Controller
     {
         session(['count' =>-1]);
         
+        
         return view('home');
     }
 }

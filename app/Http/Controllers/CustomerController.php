@@ -195,10 +195,11 @@ class CustomerController extends Controller
             join otherdetails o on i.id=o.customer_id*/
     $customerdetails=identitydetail::select('identitydetails.id', 'name', 'gardian', 'relation', 'gender', 'marital_status',
           'pan_no', 'aadhar_no', 'idproof', 'dob', 'identitydetails.created_at', 'identitydetails.updated_at', 'address', 'city','pin',
-         'state', 'group_id', 'phone_no','loan_alloted',
+         'state', 'group_id', 'phone_no','loan_alloted','status',
          'addressproof', 'salary', 'occupation','registered_by')
         ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
         ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
+        ->join('loan_allotments','identitydetails.id','=','loan_allotments.customer_id')
         ->where('identitydetails.id','=',$id)
         ->first();
         

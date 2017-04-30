@@ -32,7 +32,7 @@ class ShgpremiumController extends Controller
 
         $currentdate=Carbon::now();
 
-            $customerdetails=identitydetail::select('group_id')
+         $customerdetails=identitydetail::select('group_id')
             
         ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
         ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
@@ -44,8 +44,14 @@ class ShgpremiumController extends Controller
 
         $countdues=count($customerdetails);
 
+         $customernames=identitydetail::select('group_id','name')
+        ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
+        ->join('loan_allotments','identitydetails.id','=','loan_allotments.customer_id')
+        ->where('group_id','!=',0)
+        ->get();
 
-        return view('shgpremium.groupwithdue')->withMatchinglist($customerdetails)->withCount($countdues);
+
+        return view('shgpremium.groupwithdue')->withMatchinglist($customerdetails)->withCount($countdues)->withNames($customernames);
 
     }
 
@@ -68,7 +74,47 @@ class ShgpremiumController extends Controller
     public function store(Request $request)
     {
         //
+       // dd($request);
+        //used to store installment details into the database
+    
+    
+     $pays=$request->pay;
 
+     //$amts=$request->amt;
+
+     $fines=$request->fine;
+
+     
+
+
+           foreach($pays as $key=>$pay) {
+
+    
+            
+              $premiums=new premium;
+
+
+              $premiums->customer_id=$pay;
+
+              $premiums->fine=$fines[$key];
+              
+              $premiums->premiumdate=date('Y-m-d
+              h:m:s',$request->dateofpre);
+
+              $premiums->installment_no=1;
+
+              $premiums->save();
+
+       // $loan_allotment=loan_allotment::where('customer_id','=',$pay)
+         //   ->first();
+
+        //$loan_allotment->nextpremiumdate=$loan_allotment->nextpremiumdate->addDays(1);
+
+        //$loan_allotment->save();
+
+        }
+
+    
     }
 
     /**
@@ -115,7 +161,7 @@ class ShgpremiumController extends Controller
         
                   $installmentno=$installmentno+1;
 */
-                  return view('shgpremium.pay')->withMatchinglist($customerdetails)->withCurrentdate($currentdate);
+                  return view('shgpremium.pay')->withMatchinglist($customerdetails)->withCurrentdate($currentdate)->withGroupid($id);
 /*
                  // return redirect()->route('customers.create');
                  */

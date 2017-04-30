@@ -23,7 +23,7 @@
                     </tr>
 
                     <tr>    
-                        <td class="success" align="center"><a href="{{route('premiums.index')}}"> Premium</a></td>
+                        <td class="success" align="center"><a href="{{route('shgprem.index')}}"> Premium</a></td>
                         
                     </tr>
                     

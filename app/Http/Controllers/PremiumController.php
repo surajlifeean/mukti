@@ -37,6 +37,7 @@ class PremiumController extends Controller
         ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
         ->join('loan_allotments','identitydetails.id','=','loan_allotments.customer_id')
         ->where('nextpremiumdate','<',$currentdate)
+        ->where('status','=','active')
         ->get();
 
         $countdues=count($customerdetails);
@@ -56,7 +57,8 @@ class PremiumController extends Controller
     {
     
         $value = session('key');
-       return view('premiums.success')->withDate($value);
+        $cleared =session('loanclear');
+       return view('premiums.success')->withDate($value)->withClear($cleared);
 
     }
 
@@ -70,7 +72,9 @@ class PremiumController extends Controller
     {
         //
 
-        
+//        dd($request);
+
+        $request->session()->put('loanclear',0);
         $premium=new premium;
 
         $premium->customer_id=$request->customer_id;
@@ -85,12 +89,34 @@ class PremiumController extends Controller
 
         $loan_allotment=loan_allotment::where('customer_id','=',$premium->customer_id)
             ->first();
+        $checklastinstallment=rate::select('noofinstallments')
+            ->join('loan_allotments','loan_allotments.principal','=','rates.principal')
+            ->where('customer_id','=',$premium->customer_id)
+            ->first();
 
-        $loan_allotment->nextpremiumdate=$loan_allotment->nextpremiumdate->addDays(1);
+
+         if($premium->installment_no < $checklastinstallment->noofinstallments){
+
+                $loan_allotment->nextpremiumdate=$loan_allotment->nextpremiumdate->addDays(1);
+            }
+
+          if($premium->installment_no == $checklastinstallment->noofinstallments){
+             $loan_allotment->status="cleared";
+
+          $request->session()->put('loanclear',1);
+
+          }
+           
+         else
+         $request->session()->put('key',$loan_allotment->nextpremiumdate);
+
+
 
         $loan_allotment->save();
 
-        $request->session()->put('key',$loan_allotment->nextpremiumdate);
+
+
+
 
         return redirect()->route('premiums.create');
 
@@ -152,7 +178,7 @@ class PremiumController extends Controller
      */
     public function edit($id)
     {
-        //calls deposite premium page
+        //calls pay premium page
 
         $currentdate=Carbon::now();
         $fine=0;

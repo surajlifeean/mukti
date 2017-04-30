@@ -1,4 +1,4 @@
-
+{{dump($custdetails)}}
 @extends('layouts.app')
 
 
@@ -79,6 +79,11 @@
    <tr><td>
    	Registered By:{{$custdetails->registered_by}}
    	</td></tr>
+
+      <tr><td>
+      
+      Status:{{$custdetails->status}}
+      </td></tr>
    		</tbody>
    	</table>
 <tr><td >

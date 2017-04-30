@@ -22,8 +22,15 @@
     <div class="row">
        <div class="col-md-8 col-md-offset-2" >
          <div class="list">
-          <a href="{{route('shgprem.show',$list->group_id)}}"><b>SHG:{{$list->group_id}}</b></a>
+          <a href="{{route('shgprem.show',$list->group_id)}}"><b>SHG:{{$list->group_id}}</b></a><br>
+            @foreach($names as $name)
+              @if($name->group_id ==$list->group_id)
+               
+               <span class="label label-default">
+           {{$name->name}}</span>
    
+              @endif
+            @endforeach
        		
            </div>
          </div>
