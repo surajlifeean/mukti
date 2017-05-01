@@ -155,7 +155,7 @@ class PremiumController extends Controller
           if($currentdate>date('Y-m-d', strtotime($customerdetails->nextpremiumdate. ' + 1 days'))){
 
                         //$fine=date('d',(strtotime($currentdate))-strtotime($customerdetails->nextpremiumdate));
-                      $fdays=date('d',(strtotime($currentdate)))-date('d',(strtotime($customerdetails->nextpremiumdate)));
+                      $fdays=date('d',strtotime($currentdate)-strtotime($customerdetails->nextpremiumdate.' + 1 days'));
                     if(($customerdetails->principal)<=5000)
                       $fine=$fdays*10;
                      else
@@ -205,7 +205,7 @@ class PremiumController extends Controller
         if($currentdate>date('Y-m-d', strtotime($customerdetails->nextpremiumdate. ' + 1 days'))){
 
                         //$fine=date('d',(strtotime($currentdate))-strtotime($customerdetails->nextpremiumdate));
-                      $fdays=date('d',(strtotime($currentdate)))-date('d',(strtotime($customerdetails->nextpremiumdate)));
+                      $fdays=date('d',strtotime($currentdate)-strtotime($customerdetails->nextpremiumdate.' + 1 days'));
                     if(($customerdetails->principal)<=5000)
                       $fine=$fdays*10;
                      else

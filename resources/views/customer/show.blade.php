@@ -1,4 +1,4 @@
-{{dump($custdetails)}}
+<!--{{dump($custdetails)}}-->
 @extends('layouts.app')
 
 
@@ -81,7 +81,7 @@
    	</td></tr>
 
       <tr><td>
-      
+
       Status:{{$custdetails->status}}
       </td></tr>
    		</tbody>

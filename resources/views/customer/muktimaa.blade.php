@@ -1,5 +1,5 @@
 
-{{dump($groupmembers)}}
+<!--{{dump($groupmembers)}}-->
 
 
 @extends('layouts.app')

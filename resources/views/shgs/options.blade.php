@@ -13,10 +13,10 @@
                     <tr>
                         <td class="active" align="center"><a href="{{route('shgs.create')}}">Create SHG</a></td>
                     </tr>
-                    <tr>
+<!--                    <tr>
                         <td class="success" align="center"><a href="{{route('searchcustomers.index')}}">Edit SHG</a></td>
                     </tr>
-
+-->
                     <tr>    
                         <td class="danger" align="center"><a href="{{route('indorshg.view')}}">View SHG</a></td>
                         

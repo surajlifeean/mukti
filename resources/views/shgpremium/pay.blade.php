@@ -1,4 +1,4 @@
-{{dump($matchinglist)}}
+<!--{{dump($matchinglist)}}-->
 @extends('layouts.app')
 @section('content')
 <div class="row">
@@ -62,23 +62,30 @@
         </td>
       
       <td>
+       
+      @if($currentdate>date('Y-m-d', strtotime($list->nextpremiumdate. ' + 1 days')))
+      
       @if($list->principal<=5000)
-      @php
-      $fdays=(date('d',(strtotime($currentdate)))-date('d',(strtotime($list->nextpremiumdate)))-1) *10;
-      @endphp
-      <input type="text" name="fine[]" class="form-control" value={{$fdays}} size="2" readonly>
+                  @php
+                     $fdays=date('d',(strtotime($currentdate)-strtotime($list->nextpremiumdate.' + 1 days')))*10;
+                     if($fdays==310)
+                       $fdays=0;
+                  @endphp
+                  <input type="text" name="fine[]" class="form-control" value={{$fdays}} size="2" readonly>
 
-      @else
-      @php
-      $fdays=(date('d',(strtotime($currentdate)))-date('d',(strtotime($list->nextpremiumdate)))-1) *20;
-      @endphp
+                  @else
+                  @php 
+                    $fdays=date('d',strtotime($currentdate)-strtotime($list->nextpremiumdate.' + 1 days'))*20;
+                    if($fdays==310)
+                       $fdays=0;
+                  @endphp
 
-      <input type="text" name="fine[]" class="form-control" value={{$fdays}} size="2" readonly>
- 
-      @endif
+                  <input type="text" name="fine[]" class="form-control" value={{$fdays}} size="2" readonly>
+
+        @endif
       </td>
       </tr>
-
+     @endif
   @endforeach
   <tr><td>
 {{ Form::submit('Pay EWI',array('class'=>'btn btn-success btn-lg','style'=>'margin-top:20px'))}}

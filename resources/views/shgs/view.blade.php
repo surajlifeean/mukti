@@ -1,5 +1,5 @@
 
-{{dump($details)}}
+<!--{{dump($details)}}-->
 @extends('layouts.app')
 
 

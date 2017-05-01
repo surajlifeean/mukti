@@ -89,7 +89,7 @@ class ShgpremiumController extends Controller
 
            foreach($pays as $key=>$pay) {
 
-    
+            $installmentno=0;
             
               $premiums=new premium;
 
@@ -101,16 +101,26 @@ class ShgpremiumController extends Controller
               $premiums->premiumdate=date('Y-m-d
               h:m:s',$request->dateofpre);
 
-              $premiums->installment_no=1;
+
+                  $installment_no=premium::select('installment_no')
+                              ->where('customer_id','=',$pay)
+                              ->orderby('installment_no','desc')
+                              ->first();
+                  
+                  if(count($installment_no))
+                    $installmentno=$installment_no->installment_no+1; 
+
+                $premiums->installment_no=$installmentno;
+        
 
               $premiums->save();
 
-       // $loan_allotment=loan_allotment::where('customer_id','=',$pay)
-         //   ->first();
+         $loan_allotment=loan_allotment::where('customer_id','=',$pay)
+          ->first();
 
-        //$loan_allotment->nextpremiumdate=$loan_allotment->nextpremiumdate->addDays(1);
+        $loan_allotment->nextpremiumdate=$loan_allotment->nextpremiumdate->addDays(1);
 
-        //$loan_allotment->save();
+        $loan_allotment->save();
 
         }
 

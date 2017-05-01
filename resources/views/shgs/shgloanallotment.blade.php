@@ -1,4 +1,4 @@
-{{dump($gid)}}
+<!--{{dump($gid)}}-->
 
 @extends('layouts.app')
 
