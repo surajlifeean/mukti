@@ -49,7 +49,7 @@ class SearchCustomerController extends Controller
          'addressproof', 'salary', 'occupation','registered_by')
         ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
         ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
-        ->where('name','like',"%".$request->name."%")
+        ->where($request->searchby,'like',"%".$request->name."%")
         ->get();
 
         return view('searchcustomer.showsearchbyname')->withMatchinglist($customerdetails);
