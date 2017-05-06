@@ -8,9 +8,7 @@
 
 
 <table class="table table-striped">
-   		<tbody>
-
-   		   		 
+   		   		   		 
   @foreach($matchinglist as $list)
      <tr><td>
     <div class="row">
@@ -25,7 +23,13 @@
    	{{$list->country}}.<br>
    	Contact No:{{$list->phone_no}}
              </p>
-              <p><a class="btn btn-primary" href="{{route('customers.show',$list->id)}}" role="button">Get Complete Details</a></p>
+              <p>
+              <a class="btn" href="{{route('customers.show',$list->id)}}" role="button"><span class="glyphicon glyphicon-list-alt"></span></a>
+              
+              <a class="btn" href="{{route('customers.show',$list->id)}}" role="button"><span class="glyphicon glyphicon-trash"></span></a>
+              
+              <a class="btn" href="{{route('customers.show',$list->id)}}" role="button"><span class=" glyphicon glyphicon-pencil"></span></a>
+              </p>
               <hr>
          </div>
        </div>
@@ -35,6 +39,5 @@
        @endforeach
 
       
-       </tbody>
   </table>
 @endsection

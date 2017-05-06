@@ -21,6 +21,8 @@ class SearchCustomerController extends Controller
     public function index()
     {
         //
+        session(['count' =>-1]);
+        
         return view('searchcustomer.searchbyname');
     }
 
