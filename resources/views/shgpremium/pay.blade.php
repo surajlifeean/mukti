@@ -28,64 +28,71 @@
       <tbody>
        @if ($loop->first)
    
-  {{Form::label('principal','Alloted Amount To Each Member:')}}   
-   <input type="text" name="principal" class="form-control" value={{$list->principal}} readonly>
+              {{Form::label('principal','Alloted Amount To Each Member:')}}   
+               <input type="text" name="principal" class="form-control" value={{$list->principal}} readonly>
 
-   {{Form::label('ewi','EWI:')}}   
-   <input type="text" name="ewi" class="form-control" value={{$list->ewi}} readonly>
+               {{Form::label('ewi','EWI:')}}   
+               <input type="text" name="ewi" class="form-control" value={{$list->ewi}} readonly>
 
 
-      <input type="hidden" name="dateofpre" class="form-control" value={{strtotime($list->nextpremiumdate)}}>
 
           @endif
+
+         @if($list->nextpremiumdate<$currentdate)
+   
        
       <tr>
-        <td>
+                  <td>
 
-    <input type="hidden" name='gid' value={{$groupid}}></input>
+                              <input type="hidden" name='gid' value={{$groupid}}></input>
 
-        {{date('jS M, Y', strtotime($list->nextpremiumdate))}}
-        </td>
 
-        <td>
-        {{$list->name}}
-        </td>
-        <td>
-            @if($currentdate>=$list->nextpremiumdate)
-                  
-                   <input type="checkbox" class="checkbox-primary" name="pay[]" value="{{$list->id}}"><br>
-            @else
-                  
-                   <input type="checkbox" class="checkbox-primary" name="pay[]" value="{{$list->id}}" checked><br>
-            
-             @endif
-        </td>
-      
-      <td>
-       
-      @if($currentdate>date('Y-m-d', strtotime($list->nextpremiumdate. ' + 1 days')))
-      
-      @if($list->principal<=5000)
-                  @php
-                     $fdays=date('d',(strtotime($currentdate)-strtotime($list->nextpremiumdate.' + 1 days')))*10;
-                     if($fdays==310)
-                       $fdays=0;
-                  @endphp
-                  <input type="text" name="fine[]" class="form-control" value={{$fdays}} size="2" readonly>
+                                <input type="hidden" name="date[]" class="form-control" value={{strtotime($list->nextpremiumdate)}}>
 
-                  @else
-                  @php 
-                    $fdays=date('d',strtotime($currentdate)-strtotime($list->nextpremiumdate.' + 1 days'))*20;
-                    if($fdays==310)
-                       $fdays=0;
-                  @endphp
+                                  {{date('jS M, Y', strtotime($list->nextpremiumdate))}}
+                                  </td>
 
-                  <input type="text" name="fine[]" class="form-control" value={{$fdays}} size="2" readonly>
+                                  <td>
+                                  {{$list->name}}
+                                  </td>
+                                  <td>
+                                      @if($currentdate>=$list->nextpremiumdate)
+                                            
+                                             <input type="checkbox" class="checkbox-primary" name="pay[]" value="{{$list->id}}"><br>
+                                      @else
+                                            
+                                             <input type="checkbox" class="checkbox-primary" name="pay[]" value="{{$list->id}}" checked><br>
+                                      
+                                       @endif
+                   </td>
+                
+                <td>
+                 
+                @if($currentdate>date('Y-m-d', strtotime($list->nextpremiumdate. ' + 1 days')))
+                
+                @if($list->principal<=5000)
+                            @php
+                               $fdays=date('d',(strtotime($currentdate)-strtotime($list->nextpremiumdate.' + 1 days')))*10;
+                               if($fdays==310)
+                                 $fdays=0;
+                            @endphp
+                            <input type="text" name="fine[]" class="form-control" value={{$fdays}} size="2" readonly>
 
-        @endif
-      </td>
+                            @else
+                            @php 
+                              $fdays=date('d',strtotime($currentdate)-strtotime($list->nextpremiumdate.' + 1 days'))*20;
+                              if($fdays==310)
+                                 $fdays=0;
+                            @endphp
+
+                            <input type="text" name="fine[]" class="form-control" value={{$fdays}} size="2" readonly>
+
+                  @endif
+
+                  @endif
+                </td>
       </tr>
-     @endif
+  @endif   
   @endforeach
   <tr><td>
 {{ Form::submit('Pay EWI',array('class'=>'btn btn-success btn-lg','style'=>'margin-top:20px'))}}

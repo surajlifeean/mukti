@@ -215,9 +215,11 @@ class CustomerController extends Controller
         $count = session('count');
 
 
+        $grouptype = session('grouptype');
+
 
         
-        return view('customer.show')->withCustdetails($customerdetails)->withCount($count)->withImg($img);
+        return view('customer.show')->withCustdetails($customerdetails)->withCount($count)->withImg($img)->withGrouptype($grouptype);
 
     }
 
@@ -255,13 +257,16 @@ class CustomerController extends Controller
 
         $request->session()->put('groupid',$gid+1);
 
+        $request->session()->put('grouptype',$grouptype);//holding te group type in a session variable
+
+
         }
 
-        else
+        else{
             $request->session()->put('groupid',$gid);
+            $request->session()->put('grouptype',$grouptype);
 
-
-
+        }
 
         $request->session()->put('count',$request->group_size);
 

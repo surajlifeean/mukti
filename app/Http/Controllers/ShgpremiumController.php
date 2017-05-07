@@ -84,6 +84,9 @@ class ShgpremiumController extends Controller
 
      $fines=$request->fine;
 
+
+     $pdate=$request->date;
+
      
 
 
@@ -99,7 +102,7 @@ class ShgpremiumController extends Controller
               $premiums->fine=$fines[$key];
               
               $premiums->premiumdate=date('Y-m-d
-              h:m:s',$request->dateofpre);
+              h:m:s',$pdate[$key]);
 
 
                   $installment_no=premium::select('installment_no')

@@ -97,7 +97,9 @@
        <a href="{{route('customers.index')}}" class="btn btn-primary">Add Next</a>
          @endif
          @if($count==0)
+            @if($grouptype=="individual")
        <a href="{{route('shg.muktimaa')}}" class="btn btn-primary">Nominate Mukti Maa</a>
+            @endif
          
       @endif
  
