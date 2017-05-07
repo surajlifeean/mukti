@@ -22,11 +22,20 @@
    	{{$list->state}},
    	{{$list->country}}.<br>
    	Contact No:{{$list->phone_no}}
+  @if($list->status=="active")
+    <p class="status" style="color:#00ff00">Status:{{$list->status}}
+  @else
+      <p class="status" style="color:#ff0000">Status:{{$list->status}}
+
+  @endif
+
              </p>
               <p>
               <a class="btn" href="{{route('customers.show',$list->id)}}" role="button"><span class="glyphicon glyphicon-list-alt"></span></a>
               
-              <a class="btn" href="{{route('customers.show',$list->id)}}" role="button"><span class="glyphicon glyphicon-trash"></span></a>
+              @if($list->status=="active")
+              <a class="btn" href="{{route('unregcust.show',$list->id)}}" role="button"><span class="glyphicon glyphicon-trash"></span></a>
+              @endif
               
               <a class="btn" href="{{route('customers.show',$list->id)}}" role="button"><span class=" glyphicon glyphicon-pencil"></span></a>
               </p>
@@ -41,3 +50,5 @@
       
   </table>
 @endsection
+
+

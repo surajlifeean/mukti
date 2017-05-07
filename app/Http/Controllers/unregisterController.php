@@ -6,12 +6,11 @@ use Illuminate\Http\Request;
 
 use App\identitydetail;
 
-use App\addressdetail;
-
-use App\otherdetail;
+use App\loan_allotment;
 
 
-class SearchCustomerController extends Controller
+
+class unregisterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +20,6 @@ class SearchCustomerController extends Controller
     public function index()
     {
         //
-        return view('searchcustomer.searchbyname');
     }
 
     /**
@@ -42,20 +40,7 @@ class SearchCustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //it actually shows the details and not stores them
-            $customerdetails=identitydetail::select('identitydetails.id', 'name', 'gardian', 'relation', 'gender', 'marital_status',
-          'pan_no', 'aadhar_no', 'idproof', 'dob', 'identitydetails.created_at', 'identitydetails.updated_at', 'address', 'city','pin',
-         'state', 'country', 'phone_no','status',
-         'addressproof', 'salary', 'occupation','registered_by')
-        ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
-        ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
-        ->join('loan_allotments','identitydetails.id','=','loan_allotments.customer_id')
-        ->where($request->searchby,'like',"%".$request->name."%")
-        ->get();
-
-        return view('searchcustomer.showsearchbyname')->withMatchinglist($customerdetails);
-        
-
+        //
     }
 
     /**
@@ -67,6 +52,14 @@ class SearchCustomerController extends Controller
     public function show($id)
     {
         //
+
+
+        $customerdetails=identitydetail::select('id', 'name')
+        ->where('identitydetails.id','=',$id)
+        ->first();
+
+        return view('searchcustomer.confirmunregister')->withMatchinglist($customerdetails);
+        
     }
 
     /**
@@ -78,6 +71,7 @@ class SearchCustomerController extends Controller
     public function edit($id)
     {
         //
+
     }
 
     /**
@@ -101,5 +95,20 @@ class SearchCustomerController extends Controller
     public function destroy($id)
     {
         //
+
+
+        $customerdetails=loan_allotment::select('id','status')
+        ->where('loan_allotments.customer_id','=',$id)
+        ->first();
+
+        $post=loan_allotment::find($customerdetails->id);
+
+         $post->status="cancelled";
+         $post->save();
+      
+        return view('searchcustomer.success');
+
+
+
     }
 }
