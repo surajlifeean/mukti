@@ -56,7 +56,11 @@
       @if($hide)
         <p></p>
       @else
-   	<a href="{{route('premiums.edit',$custdetails->id)}}" class="btn btn-primary">Pay Premium</a>
+         @if($custdetails->group_id)
+            	<a href="{{route('shgprem.show',$custdetails->group_id)}}" class="btn btn-primary">Pay Premium</a>
+         @else
+                <a href="{{route('premiums.edit',$custdetails->id)}}" class="btn btn-primary">Pay Premium</a>   
+         @endif 
       @endif
 
  
