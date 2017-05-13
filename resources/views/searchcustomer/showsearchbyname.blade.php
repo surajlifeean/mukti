@@ -37,7 +37,7 @@
               <a class="btn" href="{{route('unregcust.show',$list->id)}}" role="button"><span class="glyphicon glyphicon-trash"></span></a>
               @endif
               
-              <a class="btn" href="{{route('customers.show',$list->id)}}" role="button"><span class=" glyphicon glyphicon-pencil"></span></a>
+              <a class="btn" href="{{route('editdetails.edit',$list->id)}}" role="button"><span class=" glyphicon glyphicon-pencil"></span></a>
               </p>
               <hr>
          </div>

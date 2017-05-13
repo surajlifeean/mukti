@@ -148,7 +148,7 @@ class ShgpremiumController extends Controller
 
         
 
-        $customerdetails=identitydetail::select('identitydetails.id', 'name', 'loan_allotments.created_at','nextpremiumdate','loan_allotments.principal','ewi','noofinstallments')
+        $customerdetails=identitydetail::select('identitydetails.id', 'name', 'loan_allotments.created_at','nextpremiumdate','loan_allotments.principal','ewi','noofinstallments','status')
         ->join('loan_allotments','identitydetails.id','=','loan_allotments.customer_id')
         ->join('rates','loan_allotments.principal','=','rates.principal')
         ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')

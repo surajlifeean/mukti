@@ -33,8 +33,9 @@ class indorshgcontroller extends Controller
         // to view the groups
         
         $details=identitydetail::select('identitydetails.id', 'name','address', 'city','pin',
-         'state', 'group_id', 'phone_no','group_id')
+         'state', 'group_id', 'phone_no','group_id','status')
         ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
+        ->join('loan_allotments','identitydetails.id','=','loan_allotments.customer_id')
         ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
                     ->where('group_id','>',0)
                     ->orderby('group_id','desc')

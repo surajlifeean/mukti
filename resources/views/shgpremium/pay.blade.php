@@ -37,7 +37,7 @@
 
 
           @endif
-
+@if($list->status=="active")
          @if($list->nextpremiumdate<$currentdate)
    
        
@@ -93,6 +93,7 @@
                 </td>
       </tr>
   @endif   
+@endif
   @endforeach
   <tr><td>
 {{ Form::submit('Pay EWI',array('class'=>'btn btn-success btn-lg','style'=>'margin-top:20px'))}}

@@ -37,6 +37,8 @@ Route::resource('searchcustomers','SearchCustomerController');
 
 Route::resource('loan_allotments','Loan_allotmentController');
 
+Route::resource('editdetails','editdetailsController');
+
 Route::resource('premiums','PremiumController');
 
 Route::resource('shgs','shgController');
