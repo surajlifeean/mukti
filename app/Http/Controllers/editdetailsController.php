@@ -65,17 +65,15 @@ class editdetailsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-          //dd($id);  
+    {  
     $identitydetail=identitydetail::find($id);
-
+    $addressdetail=addressdetail::find($id);
     $otherdetail=otherdetail::find($id);
 
-    $loan_allotment=loan_allotment::find($id);
+          //dd($identitydetail->addressdetail);
 
+    return view('customer.edit')->withIdentitydetail($identitydetail)->withAddressdetail($addressdetail)->    withOtherdetail($otherdetail);
 
-    return view('customer.edit')->withIdentitydetail($identitydetail)->withLoan_allotment($loan_allotment)->withOtherdetail($otherdetail);
-    
     }
 
     /**

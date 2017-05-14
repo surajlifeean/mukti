@@ -62,7 +62,9 @@ class ShgpremiumController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('shgpremium.success');
+ 
     }
 
     /**
@@ -126,6 +128,9 @@ class ShgpremiumController extends Controller
         $loan_allotment->save();
 
         }
+
+           return redirect()->route('shgprem.create');
+
 
     
     }

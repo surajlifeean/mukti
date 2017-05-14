@@ -1,8 +1,3 @@
-
-
-
-
-
 @extends('layouts.app')
 
 
@@ -26,6 +21,8 @@
 
     <select class="form-control" name="maritalstatus">
     
+    	<option selected={{$identitydetail->marital_status}}>{{ucwords($identitydetail->marital_status)}}</option>
+     
      
           <option value="single">Single</option>
           
@@ -48,15 +45,82 @@
     {{Form::text('aadhar_no',null,array('class'=>'form-control','required'=>''))}}
 
 
+     {{Form::label('address','Address:')}}
+
+	<input type="text" class='form-control' name='address' value={{$addressdetail->address}}>
+
     {{Form::label('city','City:')}}
 
-    {{Form::text('city',null,array('class'=>'form-control','required'=>''))}}
+	<input type="text" class='form-control' name='city' value={{$addressdetail->city}}>
+
+    {{Form::label('pin','Pin:')}}
+
+    <input type="text" class='form-control' name='pin' value={{$addressdetail->pin}}>
+
+    {{Form::label('phone_no','Phone No.:')}}
+	
+    <input type="text" class='form-control' name='phone_no' value={{$addressdetail->phone_no}}>
 
 
+    {{Form::label('income','Gross Annual Income:')}}  
+
+    <select class="form-control" name="income">
+    	<option selected={{$otherdetail->salary}}>{{$otherdetail->salary}}</option>
+     
+          <option value="less than 1 lakhs">Below 1 lakhs</option>
+          
+          <option value="1-5 lakhs">1 to 5 lakhs</option>
+
+          <option value="5-10 lakhs">5 to 10 lakhs</option>
+
+          <option  value="10-25 lakhs">10 to 25 lakhs</option>
+
+          <option value="over 25 lakhs">more than 25 lakhs</option>  
+
+		    
+    </select>
+
+	{{Form::label('occupation','Occupation:')}} 
+
+
+    <select class="form-control occupation" name="occupation" selected={{$otherdetail->occupation}}>
+    		
+    	<option selected={{$otherdetail->occupation}}>{{ucwords($otherdetail->occupation)}}</option>
+     
+          <option value="private sector">Private Sector</option>
+          
+          <option value="Public Sector">Public Sector</option>
+
+          <option value="Agriculture">Agriculture</option>
+
+
+          <option value="Government Service">Government Service</option>
+          
+          <option value="Retired">Retired</option>
+
+          <option value="Housewife">Housewife</option>
+
+
+          <option value="Business">Business</option>
+
+          
+          <option value="Professional">Professional</option>
+          
+          <option value="Student">Student</option>
+
+          <option value="Housewife">Housewife</option>
+
+
+            <option  value="others">Others</option>       
+		    
+    </select>
+
+
+	
     
-                  <div class="col-sm-6">
-                  {{Form::submit('Save Changes',array('class'=>"btn btn-success btn-block"))}}
-                  </div>
+   
+            {{Form::submit('Save Changes',array('class'=>"btn btn-success btn-block form-spacing-top",'style'=>'margin-top:20px'))}}
+                  
 
 	  </div>
 	
