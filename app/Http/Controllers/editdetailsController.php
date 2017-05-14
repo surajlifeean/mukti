@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\identitydetail;
 
+use Session;
+
 
 use App\addressdetail;
 
@@ -86,6 +88,44 @@ class editdetailsController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+       // dd($request);
+        $identitydetail =identitydetail::find($id);
+        
+        $identitydetail->name =$request->name;
+
+        $identitydetail->marital_status =$request->maritalstatus;
+
+        $identitydetail->pan_no = $request->pan_no;
+
+        $identitydetail->aadhar_no = $request->aadhar_no;
+
+        $identitydetail->save();
+
+        $addressdetail=addressdetail::where('customer_id','=',$id)->first();
+        
+        $addressdetail->city =$request->city;
+
+        $addressdetail->address =$request->address;
+
+        $addressdetail->pin = $request->pin;
+
+        $addressdetail->phone_no = $request->phone_no;
+
+        $addressdetail->save();
+
+        $otherdetail=otherdetail::where('customer_id','=',$id)->first();
+        
+        $otherdetail->salary=$request->income;
+
+        $otherdetail->occupation =$request->occupation;
+        
+        $otherdetail->save();
+
+      Session::flash('success','The Details was sucessflly saved!');
+
+          return redirect()->route('customers.show',$identitydetail->id);
+
     }
 
     /**
