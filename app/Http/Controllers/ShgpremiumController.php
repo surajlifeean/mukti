@@ -123,7 +123,7 @@ class ShgpremiumController extends Controller
          $loan_allotment=loan_allotment::where('customer_id','=',$pay)
           ->first();
 
-        $loan_allotment->nextpremiumdate=$loan_allotment->nextpremiumdate->addDays(1);
+        $loan_allotment->nextpremiumdate=$loan_allotment->nextpremiumdate->addDays(7);
 
         $loan_allotment->save();
 

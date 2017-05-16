@@ -19,6 +19,8 @@ use Image;
 
 use App\document;
 
+use App\loan_allotment;
+
 
 class CustomerController extends Controller
 {
@@ -193,6 +195,9 @@ class CustomerController extends Controller
         from identitydetails i 
          join addressdetails a on i.id=a.customer_id
             join otherdetails o on i.id=o.customer_id*/
+
+            $loan_allotments=loan_allotment::find($id);
+            if(count($loan_allotments)){
     $customerdetails=identitydetail::select('identitydetails.id', 'name', 'gardian', 'relation', 'gender', 'marital_status',
           'pan_no', 'aadhar_no', 'idproof', 'dob', 'identitydetails.created_at', 'identitydetails.updated_at', 'address', 'city','pin',
          'state', 'group_id', 'phone_no','loan_alloted','status',
@@ -202,7 +207,18 @@ class CustomerController extends Controller
         ->join('loan_allotments','identitydetails.id','=','loan_allotments.customer_id')
         ->where('identitydetails.id','=',$id)
         ->first();
-        
+        }
+        else{
+          $customerdetails=identitydetail::select('identitydetails.id', 'name', 'gardian', 'relation', 'gender', 'marital_status',
+          'pan_no', 'aadhar_no', 'idproof', 'dob', 'identitydetails.created_at', 'identitydetails.updated_at', 'address', 'city','pin',
+         'state', 'group_id', 'phone_no','loan_alloted',
+         'addressproof', 'salary', 'occupation','registered_by')
+        ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
+        ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
+        ->where('identitydetails.id','=',$id)
+        ->first();   
+        }
+
     
         $imag=document::where('documents.customer_id','=',$customerdetails->id)->first();
 

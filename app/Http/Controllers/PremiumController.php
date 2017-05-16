@@ -97,7 +97,7 @@ class PremiumController extends Controller
 
          if($premium->installment_no < $checklastinstallment->noofinstallments){
 
-                $loan_allotment->nextpremiumdate=$loan_allotment->nextpremiumdate->addDays(1);
+                $loan_allotment->nextpremiumdate=$loan_allotment->nextpremiumdate->addDays(7);
             }
 
           if($premium->installment_no == $checklastinstallment->noofinstallments){

@@ -69,7 +69,7 @@ class Loan_allotmentController extends Controller
         
         $loan->customer_id=$request->customer_id;
 
-        $loan->nextpremiumdate=Carbon::now()->addDays(1);
+        $loan->nextpremiumdate=Carbon::now()->addDays(6);
 
         $loan->status="active";
 
