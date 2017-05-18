@@ -38,6 +38,19 @@
                             </div>
                         </div>
 
+                         <div class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
+                            <label for="place" class="col-md-4 control-label">Place</label>
+
+                            <div class="col-md-6">
+                       
+
+                                     {!! Form::text('place', null, 
+                                    ['class'=>'form-control']) !!}
+
+                              </div>
+                        </div>
+
+                              
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
