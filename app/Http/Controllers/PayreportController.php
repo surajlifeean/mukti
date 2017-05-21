@@ -4,24 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\identitydetail;
-
-use App\loan_allotment;
-
-
-
-class unregisterController extends Controller
+class PayreportController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        
-    }
     public function index()
     {
         //
@@ -57,14 +46,6 @@ class unregisterController extends Controller
     public function show($id)
     {
         //
-
-
-        $customerdetails=identitydetail::select('id', 'name')
-        ->where('identitydetails.id','=',$id)
-        ->first();
-
-        return view('searchcustomer.confirmunregister')->withMatchinglist($customerdetails);
-        
     }
 
     /**
@@ -76,7 +57,6 @@ class unregisterController extends Controller
     public function edit($id)
     {
         //
-
     }
 
     /**
@@ -100,20 +80,5 @@ class unregisterController extends Controller
     public function destroy($id)
     {
         //
-
-
-        $customerdetails=loan_allotment::select('id','status')
-        ->where('loan_allotments.customer_id','=',$id)
-        ->first();
-
-        $post=loan_allotment::find($customerdetails->id);
-
-         $post->status="cancelled";
-         $post->save();
-      
-        return view('searchcustomer.success');
-
-
-
     }
 }

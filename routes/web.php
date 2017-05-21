@@ -41,6 +41,10 @@ Route::resource('editdetails','editdetailsController');
 
 Route::resource('premiums','PremiumController');
 
+Route::resource('manageallcustomers','AllcostomersController');
+
+Route::resource('paymentreport','PayreportController');
+
 Route::resource('shgs','shgController');
 
 Route::resource('documents','ImageController');

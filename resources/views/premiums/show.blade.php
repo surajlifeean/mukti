@@ -42,7 +42,7 @@
    	</td></tr>
 
    	<tr><td>
-   	Joined At:{{date('jS M, Y', strtotime($custdetails->created_at))}}
+   	Loan Allotment Date:{{date('jS M, Y', strtotime($custdetails->created_at))}}
    	</td></tr>
    <tr><td>
    	Date of Premium:{{date('jS M, Y', strtotime($custdetails->nextpremiumdate))}}<br>

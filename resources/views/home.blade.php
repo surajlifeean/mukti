@@ -22,11 +22,15 @@
                     <tr>
                         <td class="success" align="center"><a href="{{route('searchcustomers.index')}}">  Search Customer</a></td>
                     </tr>
+
+                    <tr>
+                        <td class="danger" align="center"><a href="{{route('manageallcustomers.index')}}">  Manage Customers</a></td>
+                    </tr>
                     <tr>    
                         <td class="warning" align="center"><a href="{{route('loan_allotments.index')}}">  Allot Loan</a></td>
                     </tr>
                     <tr>    
-                        <td class="danger" align="center"><a href="{{route('premiums.index')}}"> Premium</a></td>
+                        <td class="active" align="center"><a href="{{route('premiums.index')}}"> Premium</a></td>
                         
                     </tr>
                                         <tr>

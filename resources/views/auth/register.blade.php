@@ -50,6 +50,18 @@
                               </div>
                         </div>
 
+                         <div class="form-group{{ $errors->has('ecode') ? ' has-error' : '' }}">
+                            <label for="ecode" class="col-md-4 control-label">Security Code</label>
+
+                            <div class="col-md-6">
+                       
+
+                                     {!! Form::text('ecode', null, 
+                                    ['class'=>'form-control']) !!}
+
+                              </div>
+                        </div>
+
                               
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>

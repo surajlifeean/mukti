@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Redirect;
 
 class RegisterController extends Controller
 {
@@ -47,12 +48,21 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+    //dd($data);
+
+         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'place' =>  'required|max:255',
+            'ecode' =>'in:Mukti@257',
+
+            'place' => 'required|max:255',
             'password' => 'required|min:6|confirmed',
-        ]);
+             ]);
+
+
+      
+        
+     
     }
 
     /**

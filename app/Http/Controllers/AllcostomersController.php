@@ -2,29 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\identitydetail;
 
-use App\loan_allotment;
+use App\addressdetail;
+
+use App\otherdetail;
 
 
+use Illuminate\Http\Request;
 
-class unregisterController extends Controller
+class AllcostomersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        
-    }
     public function index()
     {
-        //
+
+           $customerdetails=identitydetail::select('identitydetails.id', 'name', 'gardian', 'relation', 'gender', 'marital_status',
+          'pan_no', 'aadhar_no', 'idproof', 'dob', 'identitydetails.created_at', 'identitydetails.updated_at', 'address', 'city','pin',
+         'state', 'country', 'phone_no',
+         'addressproof', 'salary', 'occupation','registered_by')
+        ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
+        ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
+        ->orderBy('id', 'desc')
+        ->get();
+
+        return view('allcustomers.index')->withMatchinglist($customerdetails);
+
     }
 
     /**
@@ -57,14 +64,6 @@ class unregisterController extends Controller
     public function show($id)
     {
         //
-
-
-        $customerdetails=identitydetail::select('id', 'name')
-        ->where('identitydetails.id','=',$id)
-        ->first();
-
-        return view('searchcustomer.confirmunregister')->withMatchinglist($customerdetails);
-        
     }
 
     /**
@@ -76,7 +75,6 @@ class unregisterController extends Controller
     public function edit($id)
     {
         //
-
     }
 
     /**
@@ -100,20 +98,5 @@ class unregisterController extends Controller
     public function destroy($id)
     {
         //
-
-
-        $customerdetails=loan_allotment::select('id','status')
-        ->where('loan_allotments.customer_id','=',$id)
-        ->first();
-
-        $post=loan_allotment::find($customerdetails->id);
-
-         $post->status="cancelled";
-         $post->save();
-      
-        return view('searchcustomer.success');
-
-
-
     }
 }
