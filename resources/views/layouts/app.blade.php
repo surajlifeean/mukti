@@ -11,10 +11,25 @@
     <title>Mukti</title>
 
     <!-- Styles -->
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
+      <!-- code for date picker-->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+ 
+ <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+  
+      <!-- code for date picker-->
 
         <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 @yield('stylesheets')
 
     <!-- Scripts -->
@@ -87,11 +102,24 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+
+<script src="js/jquery.js"></script>
+
+<script src="js/bootstrap-datepicker.js"></script>
 
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
- @yield('scripts')
+
+
+<script src="js/jquery-1.7.min.js" > </script>
+
+<script src="js/jquery-ui-1.8.16.custom.min.js" > </script>
+
+<script src="js/google-code-prettify/prettify.js"></script>
+
+
+   @yield('scripts')
 </body>
 </html>

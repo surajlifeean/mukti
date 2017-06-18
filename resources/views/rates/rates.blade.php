@@ -6,6 +6,8 @@
 @section('content')
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
+  
+
    <h1 class="alert alert-success" role="alert">Rate Chart</h1>
 
 <table class="table table-striped">
@@ -26,7 +28,8 @@
 		
 		<th>Pads Quantity</th>		
 	</tr>
-</thead>	<tbody>
+</thead>	
+<tbody>
 
    		   		 
   @foreach($rates as $rate)
@@ -47,12 +50,12 @@
    	{{$rate->muktipadsqty}}
 
              
-       		</td>
-       	</tr>
-       @endforeach
+    </td>
+  </tr>
+  @endforeach
 
       
-       </tbody>
+</tbody>
        </table>
        </div>
     </div>

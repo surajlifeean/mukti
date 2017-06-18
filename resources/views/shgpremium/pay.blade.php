@@ -68,11 +68,11 @@
                 
                 <td>
                  
-                @if($currentdate>date('Y-m-d', strtotime($list->nextpremiumdate. ' + 1 days')))
+                @if($currentdate>date('Y-m-d', strtotime($list->nextpremiumdate. ' + 2 days')))
                 
                 @if($list->principal<=5000)
                             @php
-                               $fdays=date('d',(strtotime($currentdate)-strtotime($list->nextpremiumdate.' + 1 days')))*10;
+                               $fdays=date('d',(strtotime($currentdate)-strtotime($list->nextpremiumdate.' + 2 days')))*10;
                                if($fdays==310)
                                  $fdays=0;
                             @endphp
@@ -80,7 +80,7 @@
 
                             @else
                             @php 
-                              $fdays=date('d',strtotime($currentdate)-strtotime($list->nextpremiumdate.' + 1 days'))*20;
+                              $fdays=date('d',strtotime($currentdate)-strtotime($list->nextpremiumdate.' + 2 days'))*20;
                               if($fdays==310)
                                  $fdays=0;
                             @endphp

@@ -26,6 +26,11 @@ class PremiumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        
+    }
     public function index()
     {
         // shows list of people whose premium is due
@@ -152,10 +157,10 @@ class PremiumController extends Controller
             
         
         
-          if($currentdate>date('Y-m-d', strtotime($customerdetails->nextpremiumdate. ' + 1 days'))){
+          if($currentdate>date('Y-m-d', strtotime($customerdetails->nextpremiumdate. ' + 2 days'))){
 
                         //$fine=date('d',(strtotime($currentdate))-strtotime($customerdetails->nextpremiumdate));
-                      $fdays=date('d',strtotime($currentdate)-strtotime($customerdetails->nextpremiumdate.' + 1 days'));
+                      $fdays=date('d',strtotime($currentdate)-strtotime($customerdetails->nextpremiumdate.' + 2 days'));
                     if(($customerdetails->principal)<=5000)
                       $fine=$fdays*10;
                      else
@@ -202,10 +207,10 @@ class PremiumController extends Controller
         ->join('rates','loan_allotments.principal','=','rates.principal')
         ->where('identitydetails.id','=',$id)
         ->first();
-        if($currentdate>date('Y-m-d', strtotime($customerdetails->nextpremiumdate. ' + 1 days'))){
+        if($currentdate>date('Y-m-d', strtotime($customerdetails->nextpremiumdate. ' + 2 days'))){
 
                         //$fine=date('d',(strtotime($currentdate))-strtotime($customerdetails->nextpremiumdate));
-                      $fdays=date('d',strtotime($currentdate)-strtotime($customerdetails->nextpremiumdate.' + 1 days'));
+                      $fdays=date('d',strtotime($currentdate)-strtotime($customerdetails->nextpremiumdate.' + 2 days'));
                     if(($customerdetails->principal)<=5000)
                       $fine=$fdays*10;
                      else

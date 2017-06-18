@@ -4,6 +4,9 @@
 @extends('layouts.app')
 
 
+
+
+
 @section('content')
 
 
@@ -42,8 +45,11 @@
        		</td></tr>
        @endforeach
 
-      
+       
   </table>
+
+		<p>Date: <input type="button" id="datepicker"></p>
+ 
 @endsection
 
 
