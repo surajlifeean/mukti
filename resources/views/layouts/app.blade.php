@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,15 +12,32 @@
 
     <title>Mukti</title>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+          <!-- code for date picker-->
+
+
       <!-- code for date picker-->
 
-        <!-- Latest compiled and minified CSS -->
 
-@yield('stylesheets')
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
+      
+
+        <!-- datepicker -->
+        
+<script src="{{ asset('js/app.js') }}"></script>
+          
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <!--datepicker link-->
+
+ @yield('stylesheets')
 
     <!-- Scripts -->
     <script>
@@ -90,7 +109,6 @@
     </div>
 
     <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

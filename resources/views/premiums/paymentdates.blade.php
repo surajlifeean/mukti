@@ -1,33 +1,25 @@
-<!--{{dump($match)}}-->
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>datepicker demo</title>
 
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+@extends('layouts.app')
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+@section('stylesheets')
+			
+			 <style type="text/css">
 
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <style type="text/css">
+  			.markholiday .ui-state-default{
+  				color:red;
+  			}
 
 
-  	.markholiday .ui-state-default{
-  		color:red;
-  	}
+             </style>
+
+@endsection
 
 
-  </style>
-</head>
-<body>
+@section('content')
+
+
+
  
  <div class="row">
  <div class="col-md-8 col-md-offset-2">
@@ -82,7 +74,9 @@
 </div>
 </div>
 
- 
+ @endsection
+
+@section('scripts')
 <script>
 /*set date picker so that no weekend is selectable..
 $( "#datepicker" ).datepicker({
@@ -115,6 +109,4 @@ $(document).ready(function() {
 });
 
 </script>
- 
-</body>
-</html>
+@endsection
