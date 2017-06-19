@@ -34,7 +34,7 @@
               <a class="btn" href="{{route('editdetails.edit',$list->id)}}" role="button"><span class=" glyphicon glyphicon-pencil"></span></a>
 
 
-              <a class="btn" href="{{route('editdetails.edit',$list->id)}}" role="button"><span class="glyphicon glyphicon-stats"></span></a>
+              <a class="btn" href="{{route('paymentreport.show',$list->id)}}" role="button"><span class="glyphicon glyphicon-stats"></span></a>
               
               </p>
               <hr>

@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
+use App\identitydetail;
+
+use App\premium;
+
+
+
 class PayreportController extends Controller
 {
     /**
@@ -13,7 +20,6 @@ class PayreportController extends Controller
      */
     public function index()
     {
-        return view('premiums.paymentdates');
     }
 
     /**
@@ -45,7 +51,16 @@ class PayreportController extends Controller
      */
     public function show($id)
     {
-        //
+
+
+        $members=premium::select('customer_id','premiumdate','created_at','fine')
+        ->where('customer_id','=',$id)
+        ->get();
+
+        return view('premiums.paymentdates')->withMatch($members);
+
+
+
     }
 
     /**
