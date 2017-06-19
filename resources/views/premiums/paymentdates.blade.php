@@ -93,11 +93,12 @@ $(document).ready(function() {
         beforeShowDay: function(date) {
         	
         	var day=date.getDay();
-        	if(day==0)
+        	/*if(day==0)
         	{
 				return [true,""];
-        	}
-        	else{
+        	}*/
+
+        	if(day!=-1){
 
         		var formatteddate=jQuery.datepicker.formatDate("yy-mm-dd",date);
         		return [true, (holidays.indexOf(formatteddate)==-1)?"":"markholiday"];
