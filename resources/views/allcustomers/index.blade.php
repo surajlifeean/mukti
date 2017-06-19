@@ -34,8 +34,9 @@
               <a class="btn" href="{{route('editdetails.edit',$list->id)}}" role="button"><span class=" glyphicon glyphicon-pencil"></span></a>
 
 
+              @if($list->loan_alloted==1)
               <a class="btn" href="{{route('paymentreport.show',$list->id)}}" role="button"><span class="glyphicon glyphicon-stats"></span></a>
-              
+              @endif
               </p>
               <hr>
          </div>

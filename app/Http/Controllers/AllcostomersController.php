@@ -31,7 +31,7 @@ class AllcostomersController extends Controller
            $customerdetails=identitydetail::select('identitydetails.id', 'name', 'gardian', 'relation', 'gender', 'marital_status',
           'pan_no', 'aadhar_no', 'idproof', 'dob', 'identitydetails.created_at', 'identitydetails.updated_at', 'address', 'city','pin',
          'state', 'country', 'phone_no',
-         'addressproof', 'salary', 'occupation','registered_by')
+         'addressproof', 'salary', 'occupation','registered_by','loan_alloted')
         ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
         ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
         ->orderBy('id', 'desc')
