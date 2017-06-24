@@ -13,8 +13,7 @@
    		<tbody>
 
          <tr><td align="center">
-               <img src="{{asset('images/'.$img)}}">
-
+               <a href="{{asset('images/'.$img)}}"> <img src="{{asset('images/'.$img)}}"></a>
          </td></tr>
 
    		<tr><td>

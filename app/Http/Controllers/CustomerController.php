@@ -162,7 +162,8 @@ class CustomerController extends Controller
             $image=$request->file('featured_image');
             $filename=time().'.'.$image->getClientOriginalExtension();//part of image intervention library
             $location=public_path('/images/'.$filename);
-
+            
+            // use $location='images/'.$filename; on a server
             Image::make($image)->resize(200,200)->save($location);
             $img->image=$filename;
 
