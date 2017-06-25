@@ -1,4 +1,5 @@
 <!--{{dump($custdetails)}}-->
+
 @extends('layouts.app')
 
 
@@ -13,7 +14,7 @@
    		<tbody>
 
          <tr><td align="center">
-               <a href="{{asset('images/'.$img)}}"> <img src="{{asset('images/'.$img)}}"></a>
+               <a href="{{route('documents.show',$custdetails->id)}}"> <img src="{{asset('images/'.$img)}}"></a>
          </td></tr>
 
    		<tr><td>

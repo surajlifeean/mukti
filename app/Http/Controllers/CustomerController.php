@@ -169,14 +169,52 @@ class CustomerController extends Controller
 
             $img->customer_id=$identitydetail->id;
 
+
             $img->save();
+        }
+
+        
+          $img=new document;
+        if($request->hasFile('featured_image2')){
+            $image2=$request->file('featured_image2');
+            $filename=time().'.'.$image2->getClientOriginalExtension();//part of image intervention library
+            $location=public_path('/images/'.$filename);
+            
+            // use $location='images/'.$filename; on a server
+            Image::make($image2)->resize(1000,1000)->save($location);
+
+            $img->image=$filename;
+
+            $img->customer_id=$identitydetail->id;
+
+
+            $img->save();
+
+        }
+
+     $img=new document;
+        if($request->hasFile('featured_image3')){
+            $image3=$request->file('featured_image3');
+            $filename=time().'.'.$image3->getClientOriginalExtension();//part of image intervention library
+            $location=public_path('/images/'.$filename);
+            
+            // use $location='images/'.$filename; on a server
+            Image::make($image3)->resize(1000,1000)->save($location);
+
+            $img->image=$filename;
+
+            $img->customer_id=$identitydetail->id;
+
+
+            $img->save();
+
         }
 
 
 
 
 
-          Session::flash('success','The blog post was sucessflly saved!');
+          Session::flash('success','The blog post was sucessfully saved!');
 
           return redirect()->route('customers.show',$identitydetail->id);
 

@@ -22,7 +22,9 @@ class ImageController extends Controller
     }
     public function index()
     {
-        //
+
+
+        return view('customer.showimage');
     }
 
     /**
@@ -44,24 +46,6 @@ class ImageController extends Controller
     public function store(Request $request)
     {
         //
-      //  dd($request);
-        $img=new document;
-        if($request->hasFile('featured_image')){
-            $image=$request->file('featured_image');
-            $filename=time().'.'.$image->getClientOriginalExtension();//part of image intervention library
-            $location=public_path('/images/'.$filename);
-
-            Image::make($image)->resize(200,200)->save($location);
-            $img->image=$filename;
-
-            $img->customer_id=$request->id;
-
-            $img->save();
-        }
-
-        return view('customer.showimage')->withImg($img);
-
-    }
 
     /**
      * Display the specified resource.
@@ -69,9 +53,14 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+}
     public function show($id)
     {
-        //
+        //dd($id);
+      $imag=document::where('documents.customer_id','=',$id)->get();
+
+      return view('customer.showimage')->withImages($imag);
+    
 
     }
 

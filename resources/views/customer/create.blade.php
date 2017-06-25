@@ -195,6 +195,13 @@
 
     {{Form::file('featured_image')}}
 
+    {{Form::label('featured_image2','Upload Aadhar Image')}}
+
+    {{Form::file('featured_image2')}}
+
+    {{Form::label('featured_image3','Upload PAN Image/Voters ID Image')}}
+
+    {{Form::file('featured_image3')}}
 
     {{ Form::submit('Save and Next',array('class'=>'btn btn-success btn-lg btn-block','style'=>'margin-top:20px'))}}
 
