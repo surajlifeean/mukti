@@ -19,9 +19,9 @@
                     <tr>
                         <td class="active" align="center"><a href="{{route('indorshg.index')}}">Register Customer</a></td>
                     </tr>
-                    <tr>
+                  <!--  <tr>
                         <td class="success" align="center"><a href="{{route('searchcustomers.index')}}">  Search Customer</a></td>
-                    </tr>
+                    </tr> -->
 
                     <tr>
                         <td class="danger" align="center"><a href="{{route('manageallcustomers.index')}}">  Manage Customers</a></td>

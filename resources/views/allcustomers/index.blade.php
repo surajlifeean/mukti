@@ -9,6 +9,41 @@
 
 @section('content')
 
+ 
+<div class="row">
+  <div class="col-md-3 col-md-offset-2">
+    {{Form::open(['route'=>['searchcustomers.store'],'method'=>'POST'])}}
+
+     {{Form::label('searchby','Search By')}}
+
+    <select class="form-control searchby" name="searchby">
+    
+     
+          <option value="name">Name</option>
+          
+          <option value="city">Place</option>
+
+
+          <option value="city">Customer ID</option>
+        
+    </select>
+  </div>
+
+  <div class="col-md-3">  
+<b>
+      <p>Search Data</p>  </b>
+      {{Form::text('name',null,['class'=>'form-control'])}}
+
+  </div>
+
+  <div class="col-md-3">  
+      {{Form::submit('search',['class'=>'btn btn-primary','style'=>'margin-top:25px'])}}
+
+    {{Form::close()}}
+    </div>
+
+ </div>
+
 
 
 <table class="table table-striped">
@@ -51,5 +86,6 @@
 
 
 @endsection
+
 
 
