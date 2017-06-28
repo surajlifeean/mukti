@@ -64,6 +64,15 @@ class Loan_allotmentController extends Controller
     public function store(Request $request)
     {
         //
+
+         $this->validate($request, [
+        'principal' => 'required|max:255',
+        'processfee' => 'required',
+        'padscost' => 'required',
+        
+    ]);
+
+
         $loan=new loan_allotment;
 
         $loan->principal=$request->principal;

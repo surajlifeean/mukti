@@ -17,9 +17,7 @@
 		<th>Scheme</th>
 
 		<th>Principal</th>
-		
-		<th>Interest Rate</th>
-		
+			
 		<th>No Of Installments</th>
 		
 		<th>EWI</th>
@@ -36,13 +34,14 @@
      <tr>
      	<td>M
     {{$rate->scheme}}
-    </td><td>
+    </td>
+    <td>
    	{{$rate->principal}}
-   	</td><td>
-   	{{$rate->interestrate}}
-   	</td><td>
+   	</td>
+    <td>
    	{{$rate->noofinstallments}}
-   	</td><td>
+   	</td>
+    <td>
    	{{$rate->ewi}}
    	</td><td>
    	{{$rate->processingfees}}

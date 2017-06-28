@@ -8,14 +8,14 @@
    <h3>{{Form::label('name',$matchinglist->name)}}</h3><br>
 
 	{{Form::label('principal','Alloted Amount:')}}   
-   <input type="text" name="principal" class="form-control" value={{$matchinglist->principal}}>
+   <input type="text" name="principal" class="form-control" value={{$matchinglist->principal}} readonly>
 
    {{Form::label('ewi','EWI:')}}   
    <input type="text" name="ewi" class="form-control" value={{$matchinglist->ewi}}>
    
 
    {{Form::label('fine','Fine:')}}   
-   <input type="text" name="fine" class="form-control" value={{$fine}}>
+   <input type="text" name="fine" class="form-control" value={{$fine}} readonly>
    
    Installment No:{{Form::label('fine',$preno)}}/<b>{{$totinst}}</b>
    

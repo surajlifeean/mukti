@@ -10,7 +10,20 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
+        <!--for the circle-->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
         <!-- Styles -->
+
+        <!-- Latest compiled and minified JavaScript -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Latest compiled and minified CSS -->
+
         <style>
             html, body {
                 background-color: #fff;
@@ -77,12 +90,31 @@
                 </div>
             @endif
 
+
+
+
             <div class="content">
+
+<div class="row">
+
+    <div class="col-md-8 col-md-offset-2">
+           <img src="images/muktilogo.jpg" class="img-circle img-responsive" width="304" height="236">
+    </div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-8 col-md-offset-2">
                 <div class="title m-b-md">
                     MukTi
                 </div>
+        </div>
+</div>
 
             </div>
+
+
         </div>
     </body>
 </html>

@@ -78,6 +78,8 @@
                     </button>
 
                     <!-- Branding Image -->
+
+
                     <a class="navbar-brand" href="{{URL('home')}}">
                         Mukti
                     </a>
@@ -123,6 +125,8 @@
         </nav>
 
         @yield('content')
+
+          
     </div>
 
     <!-- Scripts -->

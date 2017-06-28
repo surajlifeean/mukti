@@ -49,8 +49,7 @@
        
   </table>
 
-		<p>Date: <input type="button" id="datepicker"></p>
- 
+
 @endsection
 
 
