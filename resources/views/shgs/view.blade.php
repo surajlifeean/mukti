@@ -53,12 +53,14 @@
    	                    <br>
    	                Contact No:{{$detail->phone_no}}
                     <br>
-  @if($detail->status=="active")
+ 
+ <!-- @if($detail->status=="active")
     <p class="status" style="color:#00ff00">Status:{{$detail->status}}
   @else
       <p class="status" style="color:#ff0000">Status:{{$detail->status}}
 
   @endif
+  -->
 
                                @if ($loop->last)
                 	<p><a class="btn btn-primary" href="{{route('shgs.show',$oldval)}}" role="button">Group Status</a></p>

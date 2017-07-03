@@ -121,7 +121,7 @@ class shgController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //used to store alloted loan both equal and variable weightage into the database
+        //used to store alloted loan to a group into the database
     //dd($request);
     
      $ids=$request->id;
@@ -160,7 +160,7 @@ class shgController extends Controller
         
         $loan->customer_id=$id;
 
-        $loan->nextpremiumdate=Carbon::now()->addDays(1);
+        $loan->nextpremiumdate=Carbon::now()->addDays(6);
 
         $loan->status="active";
 

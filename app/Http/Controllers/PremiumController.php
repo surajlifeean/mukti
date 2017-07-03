@@ -11,11 +11,13 @@ use App\addressdetail;
 
 use App\otherdetail;
 
+use DateTime;
+
 use App\loan_allotment;
 
 use App\premium;
 
-use App\Rate;
+use App\rate;
 
 use Carbon\Carbon;
 
@@ -77,15 +79,18 @@ class PremiumController extends Controller
     {
         //
 
-//        dd($request);
+       //dd($request);
 
         $request->session()->put('loanclear',0);
+
         $premium=new premium;
 
         $premium->customer_id=$request->customer_id;
 
         $premium->fine=$request->fine;
-       
+      
+        $premium->amount_paid=$request->ewi;
+
         $premium->premiumdate=$request->premium;
         
         $premium->installment_no=$request->preno;
@@ -154,20 +159,29 @@ class PremiumController extends Controller
             $premium=Rate::select('ewi')
                         ->where('principal','=',$customerdetails->principal)
                         ->first();
-            
+          //test data  
+        //echo $currentdate;
+        //echo "<br>";
+        //echo $customerdetails->nextpremiumdate;
+        //echo "<br>";
+        //echo date('Y-m-d', strtotime($currentdate));
+        $then = new DateTime($customerdetails->nextpremiumdate);
+        $now = new DateTime($currentdate);
         
-        
-          if($currentdate>date('Y-m-d', strtotime($customerdetails->nextpremiumdate. ' + 2 days'))){
+          if(date('Y-m-d', strtotime($currentdate))>date('Y-m-d', strtotime($customerdetails->nextpremiumdate))){
 
                         //$fine=date('d',(strtotime($currentdate))-strtotime($customerdetails->nextpremiumdate));
-                      $fdays=date('d',strtotime($currentdate)-strtotime($customerdetails->nextpremiumdate.' + 2 days'));
+                   //now   $fdays=date('d',strtotime($currentdate)-strtotime($customerdetails->nextpremiumdate.' + 2 days'));
+                   $fdays=date_diff($then,$now)->format("%d days") -1;
+                   
+
                     if(($customerdetails->principal)<=5000)
                       $fine=$fdays*10;
                      else
                        $fine=$fdays*20; 
                         }
 
-                        if($currentdate<($customerdetails->nextpremiumdate))
+                        if(date('Y-m-d', strtotime($currentdate))<date('Y-m-d', strtotime($customerdetails->nextpremiumdate)))
                             $hidepaypremium=1;
                         else
                             $hidepaypremium=0;
@@ -207,10 +221,17 @@ class PremiumController extends Controller
         ->join('rates','loan_allotments.principal','=','rates.principal')
         ->where('identitydetails.id','=',$id)
         ->first();
-        if($currentdate>date('Y-m-d', strtotime($customerdetails->nextpremiumdate. ' + 2 days'))){
 
-                        //$fine=date('d',(strtotime($currentdate))-strtotime($customerdetails->nextpremiumdate));
-                      $fdays=date('d',strtotime($currentdate)-strtotime($customerdetails->nextpremiumdate.' + 2 days'));
+        $then = new DateTime($customerdetails->nextpremiumdate);
+        $now = new DateTime($currentdate);
+        
+          if(date('Y-m-d', strtotime($currentdate))>date('Y-m-d', strtotime($customerdetails->nextpremiumdate))){
+
+                        //$fine=date('d',(strtotime($currentdate))-strtotime($customerdetails->nextpremiumdate));           $fdays=date_diff($then,$now)->format("%d days") -1;
+                   $fdays=date_diff($then,$now)->format("%d days") -1;
+        
+
+                     
                     if(($customerdetails->principal)<=5000)
                       $fine=$fdays*10;
                      else

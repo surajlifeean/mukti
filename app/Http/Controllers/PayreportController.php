@@ -9,6 +9,8 @@ use App\identitydetail;
 
 use App\premium;
 
+use App\loan_allotment;
+
 
 
 class PayreportController extends Controller
@@ -52,12 +54,16 @@ class PayreportController extends Controller
     public function show($id)
     {
 
+        $loanallotment=loan_allotment::
+        select('customer_id','nextpremiumdate','created_at')
+        ->where('customer_id','=',$id)
+        ->first();
 
         $members=premium::select('customer_id','premiumdate','created_at','fine')
         ->where('customer_id','=',$id)
         ->get();
 
-        return view('premiums.paymentdates')->withMatch($members);
+        return view('premiums.paymentdates')->withMatch($members)->withLoanallotmnt($loanallotment);
 
 
 

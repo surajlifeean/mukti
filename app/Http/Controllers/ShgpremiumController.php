@@ -91,6 +91,7 @@ class ShgpremiumController extends Controller
 
      $fines=$request->fine;
 
+     $amount_paid=$request->amount_paid;
 
      $pdate=$request->date;
 
@@ -107,6 +108,11 @@ class ShgpremiumController extends Controller
               $premiums->customer_id=$pay;
 
               $premiums->fine=$fines[$key];
+
+
+              $premiums->amount_paid=$amount_paid[$key];
+
+              
               
               $premiums->premiumdate=date('Y-m-d
               h:m:s',$pdate[$key]);
@@ -149,13 +155,13 @@ class ShgpremiumController extends Controller
     public function show($id)
     {
         
-         $currentdate=Carbon::now();
+        $currentdate=Carbon::now();
         $fine=0;
        // $installment_no=premium::select('installment_no')->get();
         $installmentno=0;
 
        
-
+        echo $currentdate;
         
 
         $customerdetails=identitydetail::select('identitydetails.id', 'name', 'loan_allotments.created_at','nextpremiumdate','loan_allotments.principal','ewi','noofinstallments','status')

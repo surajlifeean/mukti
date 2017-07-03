@@ -6,19 +6,22 @@
    <h1 class="alert alert-success" role="alert">Deposit Group Premium</h1>
          {!! Form::open(['route' => 'shgprem.store','data-parsley-validate'=>'']) !!}
 
-   <table class="table table-striped">
+   <table class="table table-striped" style="font-size:10px;">
       <thead>
         <th>
-            Premium Date
+            Pay Date
         </th>
         <th>
-            Member's Name
+            Name
         </th>
         <th>
             Payment
         </th>
         <th>
             Fine
+        </th>
+        <th>
+            Amount Paid
         </th>
       </thead>
 
@@ -31,12 +34,13 @@
               {{Form::label('principal','Alloted Amount To Each Member:')}}   
                <input type="text" name="principal" class="form-control" value={{$list->principal}} readonly>
 
-               {{Form::label('ewi','EWI:')}}   
+               {{Form::label('ewi','EWI To Be Paid By Each:')}}   
                <input type="text" name="ewi" class="form-control" value={{$list->ewi}} readonly>
 
 
 
           @endif
+
 @if($list->status=="active")
          @if($list->nextpremiumdate<$currentdate)
    
@@ -68,36 +72,52 @@
                 
                 <td>
                  
-                @if($currentdate>date('Y-m-d', strtotime($list->nextpremiumdate. ' + 2 days')))
                 
+                @if(date('Y-m-d', strtotime($currentdate))>date('Y-m-d', strtotime($list->nextpremiumdate)))
+
                 @if($list->principal<=5000)
                             @php
-                               $fdays=date('d',(strtotime($currentdate)-strtotime($list->nextpremiumdate.' + 2 days')))*10;
-                               if($fdays==310)
-                                 $fdays=0;
+
+                               $then = new DateTime(date('Y-m-d', strtotime($list->nextpremiumdate)));
+                               $now = new DateTime(date('Y-m-d', strtotime($currentdate)));
+        
+                              $fdays=(date_diff($then,$now)->format("%d days") -1)*10;
+                   
                             @endphp
                             <input type="text" name="fine[]" class="form-control" value={{$fdays}} size="2" readonly>
 
                             @else
                             @php 
-                              $fdays=date('d',strtotime($currentdate)-strtotime($list->nextpremiumdate.' + 2 days'))*20;
-                              if($fdays==310)
-                                 $fdays=0;
+                               $then = new DateTime(date('Y-m-d', strtotime($list->nextpremiumdate)));
+                               $now = new DateTime(date('Y-m-d', strtotime($currentdate)));
+        
+                              $fdays=(date_diff($then,$now)->format("%d days")-1)*20;
                             @endphp
 
                             <input type="text" name="fine[]" class="form-control" value={{$fdays}} size="2" readonly>
 
                   @endif
 
+                  @else
+                     <input type="text" name="fine[]" class="form-control" value=0 size="2" readonly>
+
+
                   @endif
+                </td>
+
+                <td>
+                        <input type="text" name="amount_paid[]" class="form-control" >
+
                 </td>
       </tr>
   @endif   
 @endif
+
   @endforeach
   <tr><td>
 {{ Form::submit('Pay EWI',array('class'=>'btn btn-success btn-lg','style'=>'margin-top:20px'))}}
 </td></tr>
+
 </tbody>
 
    {{Form::close()}}

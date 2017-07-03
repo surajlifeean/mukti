@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Choose an option!</div>
+                <div class="panel-heading">Directories!</div>
 
                 <div class="panel-body">
                 <table class="table">

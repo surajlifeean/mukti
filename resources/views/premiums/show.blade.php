@@ -45,7 +45,7 @@
    	Loan Allotment Date:{{date('jS M, Y', strtotime($custdetails->created_at))}}
    	</td></tr>
    <tr><td>
-   	Next Date of Premium:{{date('jS M, Y', strtotime($custdetails->nextpremiumdate))}}<br>
+   	Latest Due Premium Date:{{date('jS M, Y', strtotime($custdetails->nextpremiumdate))}}<br>
       </td></tr>
    <tr><td>
       Today is:{{date("jS M, Y")}}
