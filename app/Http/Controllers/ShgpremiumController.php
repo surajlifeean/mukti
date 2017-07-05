@@ -16,7 +16,7 @@ use App\loan_allotment;
 
 use App\premium;
 
-use App\Rate;
+use App\rate;
 
 
 class ShgpremiumController extends Controller
@@ -106,6 +106,7 @@ class ShgpremiumController extends Controller
 
 
               $premiums->customer_id=$pay;
+
 
               $premiums->fine=$fines[$key];
 

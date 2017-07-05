@@ -165,8 +165,12 @@ class PremiumController extends Controller
         //echo $customerdetails->nextpremiumdate;
         //echo "<br>";
         //echo date('Y-m-d', strtotime($currentdate));
-        $then = new DateTime($customerdetails->nextpremiumdate);
-        $now = new DateTime($currentdate);
+
+
+                               $then = new DateTime(date('Y-m-d', strtotime($customerdetails->nextpremiumdate)));
+                               $now = new DateTime(date('Y-m-d', strtotime($currentdate)));
+        
+
         
           if(date('Y-m-d', strtotime($currentdate))>date('Y-m-d', strtotime($customerdetails->nextpremiumdate))){
 
@@ -186,7 +190,17 @@ class PremiumController extends Controller
                         else
                             $hidepaypremium=0;
 
-          return view('premiums.show')->withCustdetails($customerdetails)->withFine($fine)->withPremium($premium)->withFinedays($fdays)->withHide($hidepaypremium);
+
+            //to calculate the total outstanding amount
+         $customerpayment=loan_allotment::select('loan_allotments.customer_id', 'ewi', 'amount_paid')
+        ->join('premia','loan_allotments.customer_id','=','premia.customer_id')
+        ->join('rates','loan_allotments.principal','=','rates.principal')
+        ->where('loan_allotments.customer_id','=',$id)
+        ->get();
+
+
+
+          return view('premiums.show')->withCustdetails($customerdetails)->withFine($fine)->withPremium($premium)->withFinedays($fdays)->withHide($hidepaypremium)->withPaydetails($customerpayment);
     }
 
     /**
@@ -221,9 +235,10 @@ class PremiumController extends Controller
         ->join('rates','loan_allotments.principal','=','rates.principal')
         ->where('identitydetails.id','=',$id)
         ->first();
+                               $then = new DateTime(date('Y-m-d', strtotime($customerdetails->nextpremiumdate)));
+                               $now = new DateTime(date('Y-m-d', strtotime($currentdate)));
+        
 
-        $then = new DateTime($customerdetails->nextpremiumdate);
-        $now = new DateTime($currentdate);
         
           if(date('Y-m-d', strtotime($currentdate))>date('Y-m-d', strtotime($customerdetails->nextpremiumdate))){
 

@@ -106,7 +106,7 @@
                 </td>
 
                 <td>
-                        <input type="text" name="amount_paid[]" class="form-control" >
+                        <input type="text" name="amount_paid[]" class="form-control">
 
                 </td>
       </tr>

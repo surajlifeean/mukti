@@ -1,16 +1,27 @@
 
-
-
 @extends('layouts.app')
 
 
 @section('content')
+@php
+            $totalewi=0;
+            $totalpaid=0;
+         @endphp
 
+  @foreach($paydetails as $pay)
+      
+         @php
+            $totalewi=$totalewi+$pay->ewi;
+            $totalpaid=$totalpaid+$pay->amount_paid;
+         @endphp
+      
+
+  @endforeach
 
 <div class="row">
  <div class="col-md-8 col-md-offset-2">
-   <h1 class="alert alert-success" role="alert">Premium Status</h1>
-
+   <h1 class="alert alert-success" role="alert">Premium Status</h1><h3><b>Due Amount:Rs{{$totalewi-$totalpaid}}
+</b></h3>
    <table class="table table-striped">
    		<tbody>
    		<tr><td>
@@ -34,7 +45,7 @@
    	</td></tr>
 
    	<tr><td>
-   	Fine for {{$finedays}} days is {{$fine}}
+    <b>	Fine for {{$finedays}} days = Rs{{$fine}}</b>
    	</td></tr>
 
    	<tr><td>

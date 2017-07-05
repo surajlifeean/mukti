@@ -243,7 +243,7 @@ class CustomerController extends Controller
             $loan_allotments=loan_allotment::find($id);
             if(count($loan_allotments)){
     $customerdetails=identitydetail::select('identitydetails.id', 'name', 'gardian', 'relation', 'gender', 'marital_status',
-          'pan_no', 'aadhar_no', 'idproof', 'dob', 'identitydetails.created_at', 'identitydetails.updated_at', 'address', 'city','pin',
+          'pan_no', 'aadhar_no', 'idproof', 'dob', 'identitydetails.created_at', 'identitydetails.updated_at', 'address', 'city','pin','country',
          'state', 'group_id', 'phone_no','loan_alloted','status',
          'addressproof', 'salary', 'occupation','registered_by')
         ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')

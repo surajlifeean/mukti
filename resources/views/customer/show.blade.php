@@ -54,6 +54,7 @@
    	<tr><td>
    	Address:{{$custdetails->address}},
    	{{$custdetails->city}},
+      {{$custdetails->country}}
    	{{$custdetails->pin}},
    	{{$custdetails->state}}.
       </td></tr>
@@ -80,11 +81,7 @@
    	Registered By:{{$custdetails->registered_by}}
    	</td></tr>
 
-      <tr><td>
-
-      Status:{{$custdetails->status}}
-      </td></tr>
-   		</tbody>
+    		</tbody>
    	</table>
 <tr><td >
    	<a href="{{url('home')}}" class="btn btn-primary">Home Page</a>

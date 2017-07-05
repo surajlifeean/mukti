@@ -115,6 +115,19 @@
 		    
     </select>
 
+    {{Form::label('featured_image','Upload Image')}}
+
+    {{Form::file('featured_image')}}
+
+    {{Form::label('featured_image2','Upload Aadhar Image')}}
+
+    {{Form::file('featured_image2')}}
+
+    {{Form::label('featured_image3','Upload PAN Image/Voters ID Image')}}
+
+    {{Form::file('featured_image3')}}
+
+
 
 	
     

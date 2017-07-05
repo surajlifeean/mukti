@@ -114,14 +114,15 @@
     {{Form::text('city',null,array('class'=>'form-control','required'=>''))}}
 
 
+    {{Form::label('country','District:')}}
+
+    {{Form::text('country',null,array('class'=>'form-control','required'=>''))}}
+
+
     {{Form::label('state','State:')}}
 
     {{Form::text('state',null,array('class'=>'form-control','required'=>''))}}
 
-
-    {{Form::label('country','Country:')}}
-
-    {{Form::text('country',null,array('class'=>'form-control','required'=>''))}}
 
 
     {{Form::label('pin','Pin Code:')}}
