@@ -18,6 +18,12 @@
          </td></tr>
 
    		<tr><td>
+  <b>
+  Customer ID: {{strtoupper($genid)}}
+  </b>
+  </td></tr>
+  <tr>
+  <td>
    Customer Name: {{$custdetails->name}}
 
    		</td></tr>

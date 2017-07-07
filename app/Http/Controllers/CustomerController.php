@@ -263,6 +263,7 @@ class CustomerController extends Controller
         ->first();   
         }
 
+
     
         $imag=document::where('documents.customer_id','=',$customerdetails->id)->first();
 
@@ -278,8 +279,20 @@ class CustomerController extends Controller
         $grouptype = session('grouptype');
 
 
+        $name=explode(" ",$customerdetails->name);
+        //echo $name[1];
+        $f=substr($name[0],0,1); 
+        $l=substr($name[1],0,1); 
         
-        return view('customer.show')->withCustdetails($customerdetails)->withCount($count)->withImg($img)->withGrouptype($grouptype);
+        $adhno=substr($customerdetails->aadhar_no,8,4);
+        
+        $adhno=$adhno*10000+$customerdetails->id;
+
+        $custid=$f.$l.$adhno;
+
+        
+        
+        return view('customer.show')->withCustdetails($customerdetails)->withCount($count)->withImg($img)->withGrouptype($grouptype)->withGenid($custid);
 
     }
 

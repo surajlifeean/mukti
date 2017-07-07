@@ -65,6 +65,8 @@
 
 		<th>Payment Date</th>
 
+    <th>Payment paid</th>
+
 		<th>Fine</th>
 				
 	</tr>
@@ -90,10 +92,18 @@
         
 
        		</td>
+
+          <td>
+        {{$list->amount_paid}}  
+        </td>
+        
        		
        		<td>
        				{{$list->fine}}
        		</td>
+
+
+        
        	</tr>
        @endforeach
 

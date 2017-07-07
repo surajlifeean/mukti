@@ -149,7 +149,7 @@ class PremiumController extends Controller
             $fine=0;
             $fdays=0;
 
-            $customerdetails=identitydetail::select('identitydetails.id', 'name', 'loan_allotments.created_at', 'address', 'city','pin','state', 'phone_no','occupation','nextpremiumdate','principal','group_id','status')
+            $customerdetails=identitydetail::select('identitydetails.id', 'name', 'loan_allotments.created_at', 'address', 'city','pin','state', 'phone_no','occupation','nextpremiumdate','principal','group_id','status','loan_alloted')
         ->join('addressdetails','identitydetails.id','=','addressdetails.customer_id')
         ->join('otherdetails','identitydetails.id','=','otherdetails.customer_id')
         ->join('loan_allotments','identitydetails.id','=','loan_allotments.customer_id')

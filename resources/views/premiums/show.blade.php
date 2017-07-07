@@ -20,7 +20,10 @@
 
 <div class="row">
  <div class="col-md-8 col-md-offset-2">
-   <h1 class="alert alert-success" role="alert">Premium Status</h1><h3><b>Due Amount:Rs{{$totalewi-$totalpaid}}
+   <h1 class="alert alert-success" role="alert">Premium Status</h1><h3><b>Due Amount:Rs{{$totalewi-$totalpaid}} 
+              @if($custdetails->loan_alloted==1)
+              <a class="btn" href="{{route('paymentreport.show',$custdetails->id)}}" role="button"><span class="glyphicon glyphicon-stats"></span></a>
+              @endif
 </b></h3>
    <table class="table table-striped">
    		<tbody>

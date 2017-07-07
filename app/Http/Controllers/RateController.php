@@ -16,7 +16,7 @@ use App\loan_allotment;
 use App\Premium;
 
 
-use App\Rate;
+use App\rate;
 
 
 use Carbon\Carbon;

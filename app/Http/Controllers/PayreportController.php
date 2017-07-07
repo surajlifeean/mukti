@@ -59,7 +59,7 @@ class PayreportController extends Controller
         ->where('customer_id','=',$id)
         ->first();
 
-        $members=premium::select('customer_id','premiumdate','created_at','fine')
+        $members=premium::select('customer_id','premiumdate','amount_paid','created_at','fine')
         ->where('customer_id','=',$id)
         ->get();
 
