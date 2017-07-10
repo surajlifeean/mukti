@@ -16,6 +16,12 @@ use App\otherdetail;
 
 use App\loan_allotment;
 
+
+use App\document;
+
+
+use Image;
+
 class editdetailsController extends Controller
 {
     /**
@@ -97,7 +103,35 @@ class editdetailsController extends Controller
     {
         //
 
-       // dd($request);
+    //   dd($request);
+
+         $img=document::where('customer_id','=',$id)
+                ->where('description','=',"photo")
+                ->first();
+        
+        if(!count($img)){
+        $img=new document;
+    }
+
+        if($request->hasFile('featured_image')){
+            $image=$request->file('featured_image');
+            $filename=time().'p'.'.'.$image->getClientOriginalExtension();//part of image intervention library
+            $location=public_path('/images/'.$filename);
+            
+            // use $location='images/'.$filename; on a server
+            Image::make($image)->resize(1000,1000)->save($location);
+           
+            $img->image=$filename;
+
+            $img->customer_id=$id;
+
+            $img->description="photo";            
+
+            $img->save();
+        }
+
+
+
         $identitydetail =identitydetail::find($id);
         
         $identitydetail->name =$request->name;
@@ -109,6 +143,42 @@ class editdetailsController extends Controller
         $identitydetail->aadhar_no = $request->aadhar_no;
 
         $identitydetail->save();
+
+
+
+
+
+       
+
+        $img=document::where('customer_id','=',$id)
+                ->where('description','=',"aadhar")
+                ->first();
+        
+
+   if(!count($img)){
+        $img=new document;
+    }
+        if($request->hasFile('featured_image2')){
+            $image2=$request->file('featured_image2');
+            $filename=time().'a'.'.'.$image2->getClientOriginalExtension();//part of image intervention library
+            $location=public_path('/images/'.$filename);
+            
+            // use $location='images/'.$filename; on a server
+            Image::make($image2)->resize(1000,1000)->save($location);
+
+            $img->image=$filename;
+
+            $img->customer_id=$id;
+
+            $img->description="aadhar";            
+
+
+            $img->save();
+
+        }
+
+
+
 
         $addressdetail=addressdetail::where('customer_id','=',$id)->first();
         
@@ -122,6 +192,8 @@ class editdetailsController extends Controller
 
         $addressdetail->save();
 
+
+
         $otherdetail=otherdetail::where('customer_id','=',$id)->first();
         
         $otherdetail->salary=$request->income;
@@ -129,6 +201,41 @@ class editdetailsController extends Controller
         $otherdetail->occupation =$request->occupation;
         
         $otherdetail->save();
+
+
+
+      
+            
+
+        
+
+    $img=document::where('customer_id','=',$id)
+                ->where('description','=',"voterorpan")
+                ->first();
+
+   if(!count($img)){
+        $img=new document;
+    }
+
+        if($request->hasFile('featured_image3')){
+            $image3=$request->file('featured_image3');
+            $filename=time().'vp'.'.'.$image3->getClientOriginalExtension();//part of image intervention library
+            $location=public_path('/images/'.$filename);
+            
+            // use $location='images/'.$filename; on a server
+            Image::make($image3)->resize(1000,1000)->save($location);
+
+            $img->image=$filename;
+
+            $img->customer_id=$id;
+
+            $img->description="voterorpan";            
+
+            $img->save();
+
+        }
+
+
 
       Session::flash('success','The Details was sucessflly saved!');
 

@@ -125,7 +125,7 @@ $( "#datepicker" ).datepicker({
 */
 $(document).ready(function() {
 
-	 var holidays = <?php echo json_encode($date); ?>;
+	 var paymentdate = <?php echo json_encode($date); ?>;
 
    var loanallot= <?php  echo json_encode($loanallot); ?>;
 
@@ -150,11 +150,11 @@ $(document).ready(function() {
         	}
 
 
-          else if(d<=date) {
+          if(d<=date) {
 
             var formatteddate=jQuery.datepicker.formatDate("yy-mm-dd",date);
             // converting the calerder date to the format of the one received from db
-            return [true, (holidays.indexOf(formatteddate)==-1)?"":"event",""];
+            return [true, (paymentdate.indexOf(formatteddate)==-1)?"":"event",""];
 
           }
 

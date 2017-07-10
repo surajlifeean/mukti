@@ -67,14 +67,12 @@
 $('.principal').change(function(){
 
 
-    if($('.principal').val()<3000)
-    	$('.processfee').attr('value',20);
+    if($('.principal').val()){
+      var procfee=$('.principal').val()*0.02;
+    	$('.processfee').attr('value',procfee);
+    }
     
-    else if($('.principal').val()<6000)
-    	$('.processfee').attr('value',50);
-    else
-    	$('.processfee').attr('value',100);
-});
+    });
 
 $('.padsqty').change(function(){
  	var cost=$('.padsqty').val()*4.5;

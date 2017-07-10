@@ -18,7 +18,7 @@
     <div class="row">
        <div class="col-md-8 col-md-offset-2" >
          <div class="list">
-           <h3>{{ucwords($list->name)}}  </h3>
+           <h3><a href="{{route('customers.show',$list->id)}}">{{ucwords($list->name)}} </a></h3>
              <p>
     Resident of:{{$list->address}},
    	{{$list->city}},

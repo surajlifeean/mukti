@@ -58,8 +58,12 @@ class ImageController extends Controller
     {
         //dd($id);
       $imag=document::where('documents.customer_id','=',$id)->get();
-
+      if(count($imag))
       return view('customer.showimage')->withImages($imag);
+      else 
+     return view('customer.noimage');
+     
+        
     
 
     }

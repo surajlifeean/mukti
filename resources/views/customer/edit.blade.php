@@ -8,7 +8,7 @@
 
    	<div class="col-md-6 col-md-offset-3">
 
-    {!! Form::model($identitydetail,['route'=>['editdetails.update',$identitydetail->id],'method'=>'PUT'])!!}
+    {!! Form::model($identitydetail,['route'=>['editdetails.update',$identitydetail->id],'method'=>'PUT','files'=>true])!!}
 
 
   	{{Form::label('name', 'Name:')}}

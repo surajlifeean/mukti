@@ -164,11 +164,12 @@ class CustomerController extends Controller
             $location=public_path('/images/'.$filename);
             
             // use $location='images/'.$filename; on a server
-            Image::make($image)->resize(200,200)->save($location);
+            Image::make($image)->resize(1000,1000)->save($location);
             $img->image=$filename;
 
             $img->customer_id=$identitydetail->id;
 
+            $img->description="photo";            
 
             $img->save();
         }
@@ -187,6 +188,7 @@ class CustomerController extends Controller
 
             $img->customer_id=$identitydetail->id;
 
+            $img->description="aadhar";            
 
             $img->save();
 
@@ -205,6 +207,7 @@ class CustomerController extends Controller
 
             $img->customer_id=$identitydetail->id;
 
+            $img->description="voterorpan";            
 
             $img->save();
 

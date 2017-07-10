@@ -7,12 +7,16 @@
 
 @section('content')
 
+@php
+  $count=0;
+@endphp
    		   		 
   @foreach($images as $image)
   		
   		@php
    				$img[]=$image->image;
-		@endphp
+          $count++;
+		  @endphp
 
   @endforeach
 <div class="container">
@@ -32,13 +36,26 @@
       <div class="item active">
         <img src="{{asset('images/'.$img[0])}}" alt="Los Angeles" style="width:100%; height:100%;">
       </div>
+      
+
+      @php
+         if($count==1)
+          $img[1]="no_image.jpg";
+      @endphp
+
 
       <div class="item">
         <img src="{{asset('images/'.$img[1])}}" alt="Chicago" align="middle" style="width:100%;height:100%;">
          
       </div>
     
-    
+      
+
+      @php
+          if($count==1 || $count==2)
+          $img[2]="no_image.jpg";
+      @endphp
+
       <div class="item">
         <img src="{{asset('images/'.$img[2])}}" alt="New york" style="width:100%;height:100%">
       </div>
