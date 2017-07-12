@@ -109,6 +109,7 @@
                 <div class="title m-b-md">
                     MukTi
                 </div>
+                <b>Powered By AIDA</b>
         </div>
 </div>
 

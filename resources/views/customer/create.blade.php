@@ -11,9 +11,12 @@
 @section('content')
 
 
-<div class="row">
+<div class="row container" style="
+    margin-right: 0px;
+    margin-left: 0px;
+">
  <div class="col-md-8 col-md-offset-2">
-   <h1>Register Customer</h1>
+   <h2>Register Customer</h2>
 
    <hr>
    <h3>Identity Details</h3>

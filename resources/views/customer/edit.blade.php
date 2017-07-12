@@ -1,3 +1,4 @@
+{{dump($addressdetail)}}
 @extends('layouts.app')
 
 
@@ -45,9 +46,13 @@
     {{Form::text('aadhar_no',null,array('class'=>'form-control','required'=>''))}}
 
 
+          
+     
+
      {{Form::label('address','Address:')}}
 
-	<input type="text" class='form-control' name='address' value={{$addressdetail->address}}>
+
+	<input type="text" class='form-control' name='address' value='{{$addressdetail->address}}'>
 
     {{Form::label('city','City:')}}
 
