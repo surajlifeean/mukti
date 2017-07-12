@@ -1,11 +1,14 @@
-{{dump($addressdetail)}}
+
 @extends('layouts.app')
 
 
 @section('content')
 
 	
- <div class="row">
+ <div class="row container" style="
+    margin-right: 0px;
+    margin-left: 0px;
+">
 
    	<div class="col-md-6 col-md-offset-3">
 
