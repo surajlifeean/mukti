@@ -1,4 +1,3 @@
-{{dump($match)}}
 
 @extends('layouts.app')
 
