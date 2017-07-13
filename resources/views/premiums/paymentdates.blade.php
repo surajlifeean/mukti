@@ -1,3 +1,4 @@
+{{dump($match)}}
 
 @extends('layouts.app')
 
@@ -55,6 +56,10 @@
           $loanallot=date("j M, Y", strtotime($loanallotmnt->created_at));
 
           $stdate=date("Y-m-d", strtotime($loanallotmnt->created_at));
+
+
+
+
          
       @endphp
     
@@ -73,40 +78,65 @@
 
 
    </thead>	
-   	<tbody>  		  
-  @foreach($match as $list)
+   	<tbody> 
+
+   @if(count($match))
+    @foreach($match as $list)
      <tr>
 
-     		<td>
-     		{{date('jS M, Y', strtotime($list->premiumdate))}}	
-     		</td>
-     		<td>
-    		
-   			{{date('jS M, Y', strtotime($list->created_at))}}
+        <td>
+        {{date('jS M, Y', strtotime($list->premiumdate))}}  
+        </td>
+        <td>
+        
+        {{date('jS M, Y', strtotime($list->created_at))}}
 
-   			@php
-   				$date[]=date("Y-m-d", strtotime($list->created_at));
+        @php
+          $date[]=date("Y-m-d", strtotime($list->created_at));
 
-			@endphp
-   	
+      @endphp
+    
         
 
-       		</td>
+          </td>
 
           <td>
         {{$list->amount_paid}}  
         </td>
         
-       		
-       		<td>
-       				{{$list->fine}}
-       		</td>
+          
+          <td>
+              {{$list->fine}}
+          </td>
 
 
         
-       	</tr>
+        </tr>
        @endforeach
 
+  @else
+<tr>
+  <td align="right">
+  No   
+  </td>
+  <td>
+  Payments
+  </td>
+  <td>
+  made
+  </td>
+  <td>
+  yet!
+  </td>
+</tr>
+    @php
+    $date=date('Y-m-d');
+    @endphp
+    
+  @endif
+
+
+  
     </tbody>  
   </table>
 
@@ -125,7 +155,7 @@ $( "#datepicker" ).datepicker({
 */
 $(document).ready(function() {
 
-	 var paymentdate = <?php echo json_encode($date); ?>;
+	 var paymentdate =<?php  echo json_encode($date); ?>; 
 
    var loanallot= <?php  echo json_encode($loanallot); ?>;
 

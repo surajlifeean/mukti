@@ -81,7 +81,7 @@
         </td>
 
         <td>
-              <input type="text" class="form-control" name="pdsqty[]" id="i{{$detail->id}}">
+              <input type="text" class="form-control" name="pdsqty[]" id="i{{$detail->id}}" value=0>
           </td>
 
 

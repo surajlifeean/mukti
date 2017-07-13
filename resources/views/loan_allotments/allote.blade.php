@@ -48,9 +48,9 @@
    {{Form::label('processfee','Processing Fees:')}}
    <input type="text" name="processfee" class="form-control processfee">
    {{Form::label('padsqty','Quantity Of Pads:')}}
-   <input type="text" name="padsqty" class="form-control padsqty">
+   <input type="text" name="padsqty" class="form-control padsqty" value=0>
    {{Form::label('padscost','Pads Purchase Cost:')}}
-   <input type="text" name="padscost" class="form-control padscost">   
+   <input type="text" name="padscost" class="form-control padscost" value=0>   
        {{ Form::submit('Confirm',array('class'=>'btn btn-success btn-lg btn-block','style'=>'margin-top:20px'))}}
 
    {{Form::close()}}

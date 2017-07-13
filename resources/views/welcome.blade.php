@@ -76,6 +76,15 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            @font-face {
+    font-family: myFirstFont;
+    src: url(android_7.ttf);
+}
+
+.aida {
+    font-family: myFirstFont;
+}
+}
         </style>
     </head>
     <body>
@@ -110,7 +119,8 @@
                 <div class="title m-b-md">
                     MukTi
                 </div>
-                <b>Powered By AIDA</b>
+                Powered By
+                <h4><b><div class="aida">AIDA</div></b></h4>
         </div>
 </div>
 
