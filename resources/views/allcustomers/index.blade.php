@@ -61,6 +61,12 @@
    	{{$list->state}},
    	{{$list->country}}.<br>
    	Contact No:{{$list->phone_no}}<br>
+
+
+    @if($list->group_id)
+     <b>SHG:{{$list->group_id}}</b>
+    @endif
+    
 	Joined At:{{date('jS M, Y', strtotime($list->created_at))}}
    
               <a class="btn" href="{{route('customers.show',$list->id)}}" role="button"><span class="glyphicon glyphicon-list-alt"></span></a>

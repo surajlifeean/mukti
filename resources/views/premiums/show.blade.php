@@ -6,6 +6,8 @@
 @php
             $totalewi=0;
             $totalpaid=0;
+            $datenow=new DateTime(date("jS M, Y"));
+            $datepay=new DateTime(date('jS M, Y', strtotime($custdetails->nextpremiumdate)));
          @endphp
 
   @foreach($paydetails as $pay)
@@ -21,7 +23,11 @@
 <div class="row">
  <div class="col-md-8 col-md-offset-2">
    <h1 class="alert alert-success" role="alert">Premium Status</h1><h3><b>
-     Total Payable:Rs{{$totalewi-$totalpaid+$fine+$premium->ewi}}   
+
+   @if($datenow>$datepay)
+     Total Payable:Rs{{$totalewi-$totalpaid+$fine+$premium->ewi}}  
+  @endif
+
               @if($custdetails->loan_alloted==1)
               <a class="btn" href="{{route('paymentreport.show',$custdetails->id)}}" role="button"><span class="glyphicon glyphicon-stats"></span></a>
               @endif

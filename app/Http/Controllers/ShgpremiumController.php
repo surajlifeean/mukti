@@ -81,7 +81,7 @@ class ShgpremiumController extends Controller
     public function store(Request $request)
     {
         //
-       // dd($request);
+        dd($request);
         //used to store installment details into the database
     
     
@@ -131,6 +131,9 @@ class ShgpremiumController extends Controller
         
 
               $premiums->save();
+
+
+
 
          $loan_allotment=loan_allotment::where('customer_id','=',$pay)
           ->first();

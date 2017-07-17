@@ -84,7 +84,7 @@
                               $fdays=(date_diff($then,$now)->format("%d days") -1)*10;
                    
                             @endphp
-                            <input type="text" name="fine[]" class="form-control" value={{$fdays}} size="2" readonly>
+                            <input type="text" name="fine[]" class="form-control" value={{$fdays}} size="4" readonly>
 
                             @else
                             @php 
@@ -94,12 +94,12 @@
                               $fdays=(date_diff($then,$now)->format("%d days")-1)*20;
                             @endphp
 
-                            <input type="text" name="fine[]" class="form-control" value={{$fdays}} size="2" readonly>
+                            <input type="text" name="fine[]" class="form-control" value={{$fdays}}  readonly>
 
                   @endif
 
                   @else
-                     <input type="text" name="fine[]" class="form-control" value=0 size="2" readonly>
+                     <input type="text" name="fine[]" class="form-control" value=0 readonly>
 
 
                   @endif
